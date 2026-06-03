@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = '关于';
+const description = '关于 Jace —— 开发者、独立创作者';
+---
+
+<BaseLayout title={title} description={description} ogImage="/images/og/about.png" schemaType="person">
+  <section class="max-w-2xl mx-auto px-4 pt-10 pb-16 md:pt-16 md:pb-20">
+    <p class="text-xs tracking-[0.14em] text-gray-400 uppercase mb-4">关于</p>
+    <h1 class="text-2xl font-medium text-gray-900 mb-8">我是 Jace，一名开发者和独立创作者。</h1>
+
+    <div class="space-y-6 text-[15px] text-gray-600 leading-[1.8]">
+      <p>
+        我更关注的是：把想法变成可以被体验的产品，而不是局限在某一种题材或表达形式。
+      </p>
+
+      <p>
+        《深海人格档案》是我做的第一个互动作品，灵感来自谍战剧《潜伏》。当时我在想，如果把观众放进那些关键情境里，他们会如何选择？这个问题，最终变成了一个可以被体验的测试。
+      </p>
+
+      <p>
+        现在，这个站点已经从单一作品展示，升级为我的个人作品集合。未来，这里会持续上线新的实验性项目。
+      </p>
+
+      <p>
+        技术上，我主要做后端开发，前端还在持续补课中。
+      </p>
+
+      <p>
+        关于 sanage.xyz 这个域名——因为我在很多平台的昵称是「三阿哥又长高了吗」，所以用一个更短的方式把它保留下来。
+      </p>
+    </div>
+
+    <div class="mt-10 pt-8 border-t border-gray-100">
+      <p class="text-sm text-gray-500 mb-4">如果你有有趣的想法，想一起做点东西，可以在这里找到我：</p>
+      <div class="flex flex-col gap-2">
+        <a href="https://blog.sanage.xyz/" target="_blank" rel="noopener"
+           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 transition-colors"
+           onclick="trackEvent('click_social', {platform: 'blog'})">
+          <span>博客</span>
+          <span class="text-gray-400 text-xs">blog.sanage.xyz ↗</span>
+        </a>
+        <a href="https://www.xiaohongshu.com/user/profile/61d139c9000000001000ad68" target="_blank" rel="noopener"
+           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 transition-colors"
+           onclick="trackEvent('click_social', {platform: 'xiaohongshu'})">
+          <span>小红书</span>
+          <span class="text-gray-400 text-xs">三阿哥又长高了吗 →</span>
+        </a>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAAkX_bNTQY60w-LFB2bzP1fU-OP7sJba-qSC-VCOB5OzU" target="_blank" rel="noopener"
+           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 transition-colors"
+           onclick="trackEvent('click_social', {platform: 'douyin'})">
+          <span>抖音</span>
+          <span class="text-gray-400 text-xs">三阿哥又长高了吗 →</span>
+        </a>
+        <a href="https://web.okjike.com/u/493AC967-4EAA-4F10-A618-25150146733E" target="_blank" rel="noopener"
+           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 transition-colors"
+           onclick="trackEvent('click_social', {platform: 'jike'})">
+          <span>即刻</span>
+          <span class="text-gray-400 text-xs">@三阿哥又长高了吗 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

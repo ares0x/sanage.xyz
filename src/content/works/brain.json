@@ -1,0 +1,14 @@
+{
+	"title": "Brain 训练室",
+	"description": "通过科学小游戏，系统提升专注力、注意力与记忆力。每天 10 分钟，让大脑保持最佳状态。",
+	"slug": "brain",
+	"emoji": "🧠",
+	"theme": "indigo",
+	"tags": ["脑力训练", "专注力", "小游戏"],
+	"ogImage": "/images/og/brain.png",
+	"status": "online",
+	"statusLabel": "已上线",
+	"links": [
+		{ "label": "开始训练", "url": "https://brain.sanage.xyz/" }
+	]
+}

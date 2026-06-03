@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Sanage · 你是哪种人？';
+const description = '自我认知实验室——把有意思的问题，做成能玩的东西。人格测试、脑力训练，测完想截图发出去。';
+
+const ecosystems = [
+  {
+    icon: '🕵️',
+    iconBg: '#faf0e0',
+    name: 'Quiz 测评室',
+    desc: '谍战人格测试 · 武林外传角色匹配 · 肤色诊断',
+    domain: 'quiz.sanage.xyz',
+    url: 'https://quiz.sanage.xyz/',
+    cta: '开始测试',
+    slug: 'quiz',
+  },
+  {
+    icon: '🧠',
+    iconBg: '#f0f0ff',
+    name: 'Brain 训练室',
+    desc: '专注力 · 反应速度 · 注意力 · 30 秒见分晓',
+    domain: 'brain.sanage.xyz',
+    url: 'https://brain.sanage.xyz/',
+    cta: '开始训练',
+    slug: 'brain',
+  },
+  {
+    icon: '☯️',
+    iconBg: '#fdf3eb',
+    name: 'Liuyao 排盘室',
+    desc: '传统六爻排盘 · 现代易学数理 · 问道解惑',
+    domain: 'liuyao.sanage.xyz',
+    url: 'https://liuyao.sanage.xyz/',
+    cta: '去求一卦',
+    slug: 'liuyao',
+  },
+  {
+    icon: '⚡',
+    iconBg: '#f0f4ff',
+    name: 'ActionOS',
+    desc: '个人执行系统 · 降低认知负荷 · 克服拖延 · 开源自部署',
+    domain: 'github.com/sanage-lab/action',
+    url: 'https://github.com/sanage-lab/action',
+    cta: '查看源码',
+    slug: 'action',
+  },
+  {
+    icon: '✍️',
+    iconBg: '#f0f7f0',
+    name: '博客',
+    desc: '产品思考 · 独立开发 · 影视文化随笔',
+    domain: 'blog.sanage.xyz',
+    url: 'https://blog.sanage.xyz/',
+    cta: '去看看',
+    slug: 'blog',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} ogImage="/images/og/home.png" schemaType="website">
+
+  {/* ── Hero ── */}
+  <section class="max-w-4xl mx-auto px-6 pt-16 pb-20 md:pt-28 md:pb-28 min-h-[calc(100vh-3.5rem)] flex flex-col justify-center">
+
+    {/* 装饰背景圆 */}
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div style="
+        position: absolute;
+        top: -120px; right: -80px;
+        width: 480px; height: 480px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(184,115,51,0.06) 0%, transparent 70%);
+      "></div>
+    </div>
+
+    {/* 小标签 */}
+    <p class="animate-fade-in-up text-[11px] tracking-[0.22em] text-[#b87333] uppercase mb-7 font-medium">
+      自我认知实验室
+    </p>
+
+    {/* 主标题 */}
+    <h1 class="animate-fade-in-up delay-100 text-[52px] md:text-[76px] font-bold text-[#1a1a18] leading-[1.08] mb-7 tracking-tight">
+      你是<br class="hidden md:block" />哪种人<span style="color:#b87333;">？</span>
+    </h1>
+
+    {/* 副文案 */}
+    <p class="animate-fade-in-up delay-200 text-[16px] md:text-[18px] text-[#6b6b65] leading-[1.75] mb-10 max-w-[420px]">
+      25 道谍战情境题，解码你的灵魂原型。<br />
+      做完想截图发出去的那种测试。
+    </p>
+
+    {/* CTA 区 */}
+    <div class="animate-fade-in-up delay-300 flex flex-wrap items-center gap-5">
+      <a
+        href="https://quiz.sanage.xyz/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-primary"
+        id="hero-cta-quiz"
+        onclick="trackEvent('click_hero_cta', {destination: 'quiz'})"
+      >
+        开始测试 <span class="arrow">→</span>
+      </a>
+      <span class="text-[12px]" style="color:#aeaea5;">
+        29,000+ 人已测试
+      </span>
+    </div>
+
+    {/* 向下滚动提示 */}
+    <div class="animate-fade-in delay-500 mt-16 hidden md:flex items-center gap-2 text-[11px] text-[#c5c5be] tracking-wider">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+      还有这些
+    </div>
+  </section>
+
+  {/* ── 生态索引 ── */}
+  <section class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
+    <div class="border-t border-[#ebe8e4] pt-14">
+
+      <p class="reveal text-[11px] tracking-[0.18em] text-[#aeaea5] uppercase mb-8">
+        Sanage 生态
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4">
+        {ecosystems.map((item) => (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="eco-card reveal group flex flex-col bg-white border border-[#ebe8e4] rounded-2xl p-5 no-underline"
+            id={`eco-card-${item.slug}`}
+            onclick={`trackEvent('click_eco_card', {destination: '${item.slug}'})`}
+          >
+            {/* 图标 */}
+            <div
+              class="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-4 flex-shrink-0"
+              style={`background-color: ${item.iconBg};`}
+            >
+              {item.icon}
+            </div>
+
+            {/* 名称 */}
+            <div class="text-[15px] font-semibold text-[#1a1a18] mb-1.5">
+              {item.name}
+            </div>
+
+            {/* 描述 */}
+            <p class="text-[12px] text-[#9a9a94] leading-[1.65] mb-4 flex-1">
+              {item.desc}
+            </p>
+
+            {/* 域名 + 箭头 */}
+            <div class="flex items-end justify-between gap-2 mt-auto">
+              <span class="text-[11px] text-[#c5c5be] break-all leading-tight">{item.domain}</span>
+              <span
+                class="text-[12px] text-[#b87333] opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap flex-shrink-0"
+              >
+                {item.cta} →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── 关于（极简）── */}
+  <section class="max-w-4xl mx-auto px-6 pb-16">
+    <div class="border-t border-[#ebe8e4] pt-10">
+      <p class="reveal text-[14px] text-[#9a9a94] leading-[1.9]">
+        三阿哥又长高了吗。喜欢把有趣的问题做成能玩的东西。
+        <a
+          href="/about/"
+          class="text-[#b87333] hover:underline underline-offset-2 ml-1"
+          onclick="trackEvent('click_nav', {destination: 'about'})"
+        >
+          关于我 →
+        </a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // Scroll reveal for sections below the hero
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    (el as HTMLElement).style.transitionDelay = `${i * 0.08}s`;
+    observer.observe(el);
+  });
+</script>

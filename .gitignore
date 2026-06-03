@@ -1,0 +1,41 @@
+# Node.js
+node_modules/
+.npm
+.node_repl_history
+*.tgz
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Astro build output
+dist/
+.astro/
+
+# Cache
+.cache
+.parcel-cache
+
+# Wrangler / Cloudflare
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+.wrangler/
+worker-configuration.d.ts
+
+# Production Wrangler configs (contain real KV IDs / account info)
+# Use wrangler.jsonc.example as template
+wrangler.jsonc
+wrangler.toml
+
+# Editor
+.vscode-test
+.DS_Store

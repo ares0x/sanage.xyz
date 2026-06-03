@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import MetaTags from '../components/seo/MetaTags.astro';
+import OpenGraph from '../components/seo/OpenGraph.astro';
+import TwitterCard from '../components/seo/TwitterCard.astro';
+import SchemaOrg from '../components/seo/SchemaOrg.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  schemaType?: 'website' | 'person' | 'quiz';
+  schemaData?: { name?: string; description?: string };
+}
+
+const { title, description, ogImage, ogType, schemaType, schemaData } = Astro.props;
+const fullTitle = title.includes('Sanage') ? title : `${title} | Sanage`;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <!-- Preconnect to critical third-party origins -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <MetaTags title={fullTitle} description={description} />
+    <OpenGraph title={fullTitle} description={description} image={ogImage} type={ogType} />
+    <TwitterCard title={fullTitle} description={description} image={ogImage} />
+    <SchemaOrg type={schemaType} data={schemaData} />
+
+    <slot name="head" />
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5289705316105057" crossorigin="anonymous"></script>
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PJS5Z8KB"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R0JCBYBQT9', { send_page_view: true });
+      window.trackEvent = function(name, params = {}) {
+        if (window.gtag) gtag('event', name, params);
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 text-gray-900 antialiased pt-14 pb-16 md:pb-0">
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

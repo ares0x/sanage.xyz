@@ -1,0 +1,60 @@
+---
+interface Props {
+  type?: 'website' | 'person' | 'quiz';
+  data?: {
+    name?: string;
+    description?: string;
+  };
+}
+
+const { type = 'website', data = {} } = Astro.props;
+const siteUrl = 'https://sanage.xyz';
+
+const schemas = {
+  website: {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Sanage',
+    url: siteUrl,
+    description: '创作者个人站点与互动作品集合',
+    author: {
+      '@type': 'Person',
+      name: 'Jace',
+      url: siteUrl,
+      sameAs: [
+        'https://github.com/jacejia',
+        'https://blog.sanage.xyz/',
+        'https://quiz.sanage.xyz/',
+        'https://brain.sanage.xyz/',
+      ],
+    },
+  },
+  person: {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Jace',
+    url: siteUrl,
+    sameAs: [
+      'https://github.com/jacejia',
+      'https://blog.sanage.xyz/',
+      'https://quiz.sanage.xyz/',
+      'https://brain.sanage.xyz/',
+    ],
+  },
+  quiz: {
+    '@context': 'https://schema.org',
+    '@type': 'Quiz',
+    name: data.name || '互动测试',
+    description: data.description || '',
+    author: {
+      '@type': 'Person',
+      name: 'Jace',
+      url: siteUrl,
+    },
+  },
+};
+
+const schema = schemas[type] || schemas.website;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

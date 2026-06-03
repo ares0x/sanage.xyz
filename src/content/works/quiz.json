@@ -1,0 +1,12 @@
+{
+	"title": "Quiz 测评室",
+	"description": "影视情境人格测评合集。25道谍战情境题解码你的灵魂原型，武林外传角色匹配，还有肤色测试与知识考试——测完想截图发出去。",
+	"slug": "quiz",
+	"emoji": "🔍",
+	"theme": "amber",
+	"tags": ["人格测评", "情境测试", "影视"],
+	"ogImage": "/images/og/quiz.png",
+	"status": "online",
+	"statusLabel": "已上线",
+	"links": [{ "label": "开始测试", "url": "https://quiz.sanage.xyz/" }]
+}

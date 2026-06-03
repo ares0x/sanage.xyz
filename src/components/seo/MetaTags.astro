@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+const siteUrl = 'https://sanage.xyz';
+const pageCanonical = canonical || `${siteUrl}${Astro.url.pathname}`;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#3d2817" />
+<link rel="canonical" href={pageCanonical} />
+<title>{title}</title>

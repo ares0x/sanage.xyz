@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  site?: string;
+  creator?: string;
+}
+
+const { title, description, image = '/images/og/default.png', site, creator } = Astro.props;
+const siteUrl = 'https://sanage.xyz';
+const twitterImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+---
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={twitterImage} />
+{site && <meta name="twitter:site" content={site} />}
+{creator && <meta name="twitter:creator" content={creator} />}
