@@ -1,0 +1,14 @@
+{
+	"title": "CalmFlow · 专注执行桌面端",
+	"description": "从认知混乱走向心流状态的桌面执行系统。结合行为科学与 LLM，帮你降低认知负荷、克服拖延，无摩擦地启动行动。",
+	"slug": "calmflow",
+	"emoji": "🌊",
+	"theme": "emerald",
+	"tags": ["执行系统", "桌面应用", "心流", "LLM"],
+	"ogImage": "/images/og/calmflow.png",
+	"status": "online",
+	"statusLabel": "已上线",
+	"links": [
+		{ "label": "立即体验", "url": "https://calmflow.sanage.xyz/" }
+	]
+}
