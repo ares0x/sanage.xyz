@@ -5,6 +5,7 @@ const title = 'Sanage · 你是哪种人？';
 const description = '自我认知实验室——把有意思的问题，做成能玩的东西。人格测试、脑力训练，测完想截图发出去。';
 
 const ecosystems = [
+  // ── 第一行：核心互动产品 ──
   {
     icon: '🕵️',
     iconBg: '#faf0e0',
@@ -26,16 +27,6 @@ const ecosystems = [
     slug: 'brain',
   },
   {
-    icon: '☯️',
-    iconBg: '#fdf3eb',
-    name: 'Liuyao 排盘室',
-    desc: '传统六爻排盘 · 现代易学数理 · 问道解惑',
-    domain: 'liuyao.sanage.xyz',
-    url: 'https://liuyao.sanage.xyz/',
-    cta: '去求一卦',
-    slug: 'liuyao',
-  },
-  {
     icon: '🌊',
     iconBg: '#edf6ff',
     name: 'CalmFlow',
@@ -44,6 +35,17 @@ const ecosystems = [
     url: 'https://calmflow.sanage.xyz/',
     cta: '立即体验',
     slug: 'calmflow',
+  },
+  // ── 第二行：其他内容 ──
+  {
+    icon: '☯️',
+    iconBg: '#fdf3eb',
+    name: 'Liuyao 排盘室',
+    desc: '传统六筻排盘 · 现代易学数理 · 问道解惑',
+    domain: 'liuyao.sanage.xyz',
+    url: 'https://liuyao.sanage.xyz/',
+    cta: '去求一卦',
+    slug: 'liuyao',
   },
   {
     icon: '✍️',
@@ -124,7 +126,7 @@ const ecosystems = [
         Sanage 生态
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {ecosystems.map((item) => (
           <a
             href={item.url}
