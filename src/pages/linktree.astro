@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = '链接';
-const description = '在所有平台找到 Sanage';
+const title = 'Sanage 全平台链接 · 三阿哥又长高了吗';
+const description = '在小红书、抖音、即刻、GitHub 找到三阿哥（Sanage / Jace），或者直接体验人格测试、脑力训练、六爻排盘等互动产品。';
 ---
 
 <BaseLayout title={title} description={description} ogImage="/images/og/linktree.png" schemaType="person">
+  <meta slot="head" name="robots" content="noindex, follow" />
   <section class="max-w-md mx-auto px-4 py-12 md:py-20">
     <div class="text-center mb-10">
       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center text-3xl">

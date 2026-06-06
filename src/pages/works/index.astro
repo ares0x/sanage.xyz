@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const title = '作品';
-const description = 'Sanage 的互动作品与子站索引——Quiz 测评室、Brain 训练室、博客';
+const title = '作品集 · Sanage 产品矩阵';
+const description = 'Sanage 旗下互动作品与子站全览：Quiz 测评室（谍战人格测试 · 武林外传角色匹配）、Brain 训练室（专注力 · 反应速度训练）、CalmFlow 桌面执行系统、Liuyao 六爻排盘室。把有意思的问题，做成能玩的东西。';
 const works = await getCollection('works');
 
 // 所有在线的排前面
@@ -22,7 +22,7 @@ const themeAccent: Record<string, { icon: string; bg: string; ring: string }> = 
 };
 ---
 
-<BaseLayout title={title} description={description} ogImage="/images/og/works.png">
+<BaseLayout title={title} description={description} ogImage="/images/og/works.png" schemaType="website">
 
   <section class="max-w-3xl mx-auto px-6 py-14 md:py-20">
 

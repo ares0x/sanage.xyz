@@ -10,47 +10,61 @@ interface Props {
 const { type = 'website', data = {} } = Astro.props;
 const siteUrl = 'https://sanage.xyz';
 
+const person = {
+  '@type': 'Person',
+  name: 'Jace',
+  alternateName: '三阿哥又长高了吗',
+  url: siteUrl,
+  jobTitle: '独立开发者 / 创作者',
+  description: '把有意思的想法做成可以被体验的产品，包括人格测试、脑力训练工具、桌面执行系统等互动作品。',
+  knowsAbout: ['人格测试', '脑力训练', '桌面应用', '独立开发', '影视文化', '易学数理'],
+  sameAs: [
+    'https://github.com/jacejia',
+    'https://blog.sanage.xyz/',
+    'https://quiz.sanage.xyz/',
+    'https://brain.sanage.xyz/',
+    'https://calmflow.sanage.xyz/',
+    'https://liuyao.sanage.xyz/',
+    'https://www.xiaohongshu.com/user/profile/61d139c9000000001000ad68',
+    'https://www.douyin.com/user/MS4wLjABAAAAkX_bNTQY60w-LFB2bzP1fU-OP7sJba-qSC-VCOB5OzU',
+    'https://web.okjike.com/u/493AC967-4EAA-4F10-A618-25150146733E',
+  ],
+};
+
 const schemas = {
   website: {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Sanage',
+    alternateName: '三阿哥又长高了吗',
     url: siteUrl,
-    description: '创作者个人站点与互动作品集合',
-    author: {
-      '@type': 'Person',
-      name: 'Jace',
-      url: siteUrl,
-      sameAs: [
-        'https://github.com/jacejia',
-        'https://blog.sanage.xyz/',
-        'https://quiz.sanage.xyz/',
-        'https://brain.sanage.xyz/',
-      ],
+    description: '独立创作者 Jace 的个人品牌站——互动人格测试、脑力训练、桌面执行系统、六爻排盘等作品集合。',
+    inLanguage: 'zh-CN',
+    author: person,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/works/`,
+      },
+      'query-input': 'required name=search_term_string',
     },
   },
   person: {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Jace',
-    url: siteUrl,
-    sameAs: [
-      'https://github.com/jacejia',
-      'https://blog.sanage.xyz/',
-      'https://quiz.sanage.xyz/',
-      'https://brain.sanage.xyz/',
-    ],
+    ...person,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/about/`,
+    },
   },
   quiz: {
     '@context': 'https://schema.org',
     '@type': 'Quiz',
     name: data.name || '互动测试',
     description: data.description || '',
-    author: {
-      '@type': 'Person',
-      name: 'Jace',
-      url: siteUrl,
-    },
+    inLanguage: 'zh-CN',
+    author: person,
   },
 };
 

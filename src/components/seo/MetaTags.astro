@@ -3,9 +3,15 @@ interface Props {
   title: string;
   description: string;
   canonical?: string;
+  keywords?: string;
 }
 
-const { title, description, canonical } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  keywords = '人格测试,性格测试,谍战测试,潜伏人格,武林外传测试,脑力训练,专注力,CalmFlow,执行系统,六爻排盘,Sanage,三阿哥又长高了吗',
+} = Astro.props;
 const siteUrl = 'https://sanage.xyz';
 const pageCanonical = canonical || `${siteUrl}${Astro.url.pathname}`;
 ---
@@ -13,6 +19,9 @@ const pageCanonical = canonical || `${siteUrl}${Astro.url.pathname}`;
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Jace (三阿哥又长高了吗)" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="theme-color" content="#3d2817" />
 <link rel="canonical" href={pageCanonical} />
 <link rel="icon" type="image/png" href="/sanage_logo.png" />

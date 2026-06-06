@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = '关于';
-const description = '关于 Jace —— 开发者、独立创作者';
+const title = '关于 Jace · 三阿哥又长高了吗';
+const description = 'Jace，一名开发者与独立创作者。我在做的事是：把想法变成可以被体验的产品——谍战人格测试、脑力训练工具、桌面执行系统、传统易学数理。别名「三阿哥又长高了吗」。';
+const keywords = '三阿哥又长高了吗,Jace,sanage,独立开发者,创作者,开发者,个人品牌,个人成长,独立开发';
 ---
 
-<BaseLayout title={title} description={description} ogImage="/images/og/about.png" schemaType="person">
+<BaseLayout title={title} description={description} keywords={keywords} ogImage="/images/og/about.png" schemaType="person">
   <section class="max-w-2xl mx-auto px-4 pt-10 pb-16 md:pt-16 md:pb-20">
     <p class="text-xs tracking-[0.14em] text-gray-400 uppercase mb-4">关于</p>
     <h1 class="text-2xl font-medium text-gray-900 mb-8">我是 Jace，一名开发者和独立创作者。</h1>
