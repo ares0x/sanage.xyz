@@ -15,6 +15,7 @@ const ecosystems = [
     url: 'https://quiz.sanage.xyz/',
     cta: '开始测试',
     slug: 'quiz',
+    featured: false,
   },
   {
     icon: '🧠',
@@ -25,27 +26,30 @@ const ecosystems = [
     url: 'https://brain.sanage.xyz/',
     cta: '开始训练',
     slug: 'brain',
+    featured: false,
   },
   {
     icon: '🌊',
     iconBg: '#edf6ff',
     name: 'CalmFlow',
-    desc: '专注执行桌面端 · 降低认知负荷 · 心流启动系统',
+    desc: 'AI 任务拆解 · 降低认知负荷 · 心流启动桌面端',
     domain: 'calmflow.sanage.xyz',
     url: 'https://calmflow.sanage.xyz/',
     cta: '立即体验',
     slug: 'calmflow',
+    featured: true,   // 主推产品，绿色高亮
   },
   // ── 第二行：其他内容 ──
   {
     icon: '☯️',
     iconBg: '#fdf3eb',
     name: 'Liuyao 排盘室',
-    desc: '传统六筻排盘 · 现代易学数理 · 问道解惑',
+    desc: '传统六爻排盘 · 现代易学数理 · 问道解惑',
     domain: 'liuyao.sanage.xyz',
     url: 'https://liuyao.sanage.xyz/',
     cta: '去求一卦',
     slug: 'liuyao',
+    featured: false,
   },
   {
     icon: '✍️',
@@ -56,6 +60,7 @@ const ecosystems = [
     url: 'https://blog.sanage.xyz/',
     cta: '去看看',
     slug: 'blog',
+    featured: false,
   },
 ];
 ---
@@ -93,7 +98,7 @@ const ecosystems = [
     </p>
 
     {/* CTA 区 */}
-    <div class="animate-fade-in-up delay-300 flex flex-wrap items-center gap-5">
+    <div class="animate-fade-in-up delay-300 flex flex-wrap items-center gap-4 mb-4">
       <a
         href="https://quiz.sanage.xyz/"
         target="_blank"
@@ -104,13 +109,21 @@ const ecosystems = [
       >
         开始测试 <span class="arrow">→</span>
       </a>
-      <span class="text-[12px]" style="color:#aeaea5;">
-        29,000+ 人已测试
-      </span>
+      <a
+        href="#ecosystem"
+        class="text-[13px] text-[#9a9a94] hover:text-[#6b6b65] transition-colors no-underline"
+        id="hero-cta-explore"
+        onclick="trackEvent('click_hero_cta', {destination: 'explore'})"
+      >
+        查看全部产品 ↓
+      </a>
     </div>
+    <span class="animate-fade-in-up delay-400 text-[12px]" style="color:#aeaea5;">
+      29,000+ 人已测试
+    </span>
 
     {/* 向下滚动提示 */}
-    <div class="animate-fade-in delay-500 mt-16 hidden md:flex items-center gap-2 text-[11px] text-[#c5c5be] tracking-wider">
+    <div class="animate-fade-in delay-500 mt-14 hidden md:flex items-center gap-2 text-[11px] text-[#c5c5be] tracking-wider">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
@@ -119,7 +132,7 @@ const ecosystems = [
   </section>
 
   {/* ── 生态索引 ── */}
-  <section class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
+  <section id="ecosystem" class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
     <div class="border-t border-[#ebe8e4] pt-14">
 
       <p class="reveal text-[11px] tracking-[0.18em] text-[#aeaea5] uppercase mb-8">
@@ -132,20 +145,31 @@ const ecosystems = [
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="eco-card reveal group flex flex-col bg-white border border-[#ebe8e4] rounded-2xl p-5 no-underline"
+            class={`eco-card reveal group flex flex-col rounded-2xl p-5 no-underline ${
+              item.featured
+                ? 'bg-white border-2 border-[#1D9E75]'
+                : 'bg-white border border-[#ebe8e4]'
+            }`}
             id={`eco-card-${item.slug}`}
             onclick={`trackEvent('click_eco_card', {destination: '${item.slug}'})`}
           >
-            {/* 图标 */}
-            <div
-              class="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-4 flex-shrink-0"
-              style={`background-color: ${item.iconBg};`}
-            >
-              {item.icon}
+            {/* 图标 + 新标签 */}
+            <div class="flex items-start justify-between mb-4">
+              <div
+                class="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                style={`background-color: ${item.iconBg};`}
+              >
+                {item.icon}
+              </div>
+              {item.featured && (
+                <span class="text-[10px] font-medium px-2 py-[3px] rounded-full bg-[#EAF7F0] text-[#1D9E75] flex-shrink-0">
+                  新
+                </span>
+              )}
             </div>
 
             {/* 名称 */}
-            <div class="text-[15px] font-semibold text-[#1a1a18] mb-1.5">
+            <div class={`text-[15px] font-semibold mb-1.5 ${item.featured ? 'text-[#0D2016]' : 'text-[#1a1a18]'}`}>
               {item.name}
             </div>
 
@@ -158,7 +182,9 @@ const ecosystems = [
             <div class="flex items-end justify-between gap-2 mt-auto">
               <span class="text-[11px] text-[#c5c5be] break-all leading-tight">{item.domain}</span>
               <span
-                class="text-[12px] text-[#b87333] opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap flex-shrink-0"
+                class={`text-[12px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap flex-shrink-0 ${
+                  item.featured ? 'text-[#1D9E75]' : 'text-[#b87333]'
+                }`}
               >
                 {item.cta} →
               </span>
