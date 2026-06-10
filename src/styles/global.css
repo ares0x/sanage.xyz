@@ -90,6 +90,29 @@ body {
   transform: translateX(3px);
 }
 
+/* ─── 次要/辅助按钮 ─── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: white;
+  color: #1a1a18;
+  border: 1px solid #ebe8e4;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+.btn-secondary:hover {
+  border-color: #b87333;
+  background: #fafaf8;
+  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.04);
+  transform: translateY(-1px);
+}
+
+
 /* ─── scroll 触发动效（IntersectionObserver 配合用）─── */
 .reveal {
   opacity: 0;

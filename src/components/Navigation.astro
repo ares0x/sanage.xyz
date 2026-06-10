@@ -3,9 +3,11 @@ const currentPath = Astro.url.pathname;
 
 const NAV_LINKS = [
   { url: '/works/', label: '作品' },
+  { url: '/now/', label: '现在' },
   { url: '/about/', label: '关于' },
   { url: 'https://blog.sanage.xyz/', label: '博客', external: true },
 ];
+
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-transform duration-300">

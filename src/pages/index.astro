@@ -83,51 +83,56 @@ const ecosystems = [
 
     {/* 小标签 */}
     <p class="animate-fade-in-up text-[11px] tracking-[0.22em] text-[#b87333] uppercase mb-7 font-medium">
-      自我认知实验室
+      三阿哥的个人品牌主港
     </p>
 
     {/* 主标题 */}
-    <h1 class="animate-fade-in-up delay-100 text-[52px] md:text-[76px] font-bold text-[#1a1a18] leading-[1.08] mb-7 tracking-tight">
-      你是<br class="hidden md:block" />哪种人<span style="color:#b87333;">？</span>
+    <h1 class="animate-fade-in-up delay-100 text-[48px] md:text-[68px] font-bold text-[#1a1a18] leading-[1.15] mb-7 tracking-tight">
+      三阿哥又长高了吗
     </h1>
 
     {/* 副文案 */}
-    <p class="animate-fade-in-up delay-200 text-[16px] md:text-[18px] text-[#6b6b65] leading-[1.75] mb-10 max-w-[420px]">
-      25 道谍战情境题，解码你的灵魂原型。<br />
-      做完想截图发出去的那种测试。
+    <p class="animate-fade-in-up delay-200 text-[16px] md:text-[18px] text-[#6b6b65] leading-[1.75] mb-10 max-w-[480px]">
+      探索认知、AI与个体成长。<br />
+      把有趣的问题做成有趣的产品。
     </p>
 
     {/* CTA 区 */}
-    <div class="animate-fade-in-up delay-300 flex flex-wrap items-center gap-4 mb-4">
-      <a
-        href="https://quiz.sanage.xyz/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta-primary"
-        id="hero-cta-quiz"
-        onclick="trackEvent('click_hero_cta', {destination: 'quiz'})"
-      >
-        开始测试 <span class="arrow">→</span>
-      </a>
+    <div class="animate-fade-in-up delay-300 flex flex-wrap items-center gap-3.5">
       <a
         href="#ecosystem"
-        class="text-[13px] text-[#9a9a94] hover:text-[#6b6b65] transition-colors no-underline"
-        id="hero-cta-explore"
-        onclick="trackEvent('click_hero_cta', {destination: 'explore'})"
+        class="cta-primary"
+        id="hero-cta-works"
+        onclick="trackEvent('click_hero_cta', {destination: 'works'})"
       >
-        查看全部产品 ↓
+        查看作品 <span class="arrow">→</span>
+      </a>
+      <a
+        href="https://blog.sanage.xyz/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-secondary"
+        id="hero-cta-blog"
+        onclick="trackEvent('click_hero_cta', {destination: 'blog'})"
+      >
+        阅读博客 ↗
+      </a>
+      <a
+        href="/now/"
+        class="btn-secondary"
+        id="hero-cta-now"
+        onclick="trackEvent('click_hero_cta', {destination: 'now'})"
+      >
+        关注动态 →
       </a>
     </div>
-    <span class="animate-fade-in-up delay-400 text-[12px]" style="color:#aeaea5;">
-      29,000+ 人已测试
-    </span>
 
     {/* 向下滚动提示 */}
-    <div class="animate-fade-in delay-500 mt-14 hidden md:flex items-center gap-2 text-[11px] text-[#c5c5be] tracking-wider">
+    <div class="animate-fade-in delay-400 mt-14 hidden md:flex items-center gap-2 text-[11px] text-[#c5c5be] tracking-wider">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
-      还有这些
+      SANAGE LAB
     </div>
   </section>
 
@@ -135,9 +140,15 @@ const ecosystems = [
   <section id="ecosystem" class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
     <div class="border-t border-[#ebe8e4] pt-14">
 
-      <p class="reveal text-[11px] tracking-[0.18em] text-[#aeaea5] uppercase mb-8">
-        Sanage 生态
-      </p>
+      <div class="reveal mb-10">
+        <p class="text-[11px] tracking-[0.18em] text-[#b87333] uppercase mb-3 font-semibold">
+          SANAGE LAB
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1a1a18] mb-3">产品矩阵</h2>
+        <p class="text-[14px] text-[#6b6b65] max-w-xl leading-relaxed">
+          正在构建帮助人们认识自己、提升认知和采取行动的工具。
+        </p>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {ecosystems.map((item) => (
@@ -191,6 +202,96 @@ const ecosystems = [
             </div>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Build in Public ── */}
+  <section class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
+    <div class="border-t border-[#ebe8e4] pt-14">
+      <div class="reveal mb-10">
+        <p class="text-[11px] tracking-[0.18em] text-[#b87333] uppercase mb-3 font-semibold">
+          BUILD IN PUBLIC
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1a1a18] mb-3">最近在做什么</h2>
+        <p class="text-[14px] text-[#6b6b65] leading-relaxed">
+          公开构建（Build in Public）是我的创作逻辑，这里记录我最近的迭代步伐与日常探索。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
+          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
+          <div>
+            <h3 class="text-[15px] font-semibold text-[#1a1a18] mb-1">CalmFlow 桌面版内测</h3>
+            <p class="text-[12px] text-[#9a9a94] leading-relaxed">桌面端内测正在开展中，着重调优语音分析触发器与心流无摩擦启动链路。</p>
+          </div>
+        </div>
+        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
+          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
+          <div>
+            <h3 class="text-[15px] font-semibold text-[#1a1a18] mb-1">Brain 训练室迭代</h3>
+            <p class="text-[12px] text-[#9a9a94] leading-relaxed">优化专注力与注意力反馈曲线算法，使测试数据表现更加契合认知心理学模型。</p>
+          </div>
+        </div>
+        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
+          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
+          <div>
+            <h3 class="text-[15px] font-semibold text-[#1a1a18] mb-1">AI 测评系统开发</h3>
+            <p class="text-[12px] text-[#9a9a94] leading-relaxed">研究通过 LLM 管道进行基于特定人设和危机场景的测评题库自动化生成流程。</p>
+          </div>
+        </div>
+        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
+          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
+          <div>
+            <h3 class="text-[15px] font-semibold text-[#1a1a18] mb-1">阅读《纳瓦尔宝典》</h3>
+            <p class="text-[12px] text-[#9a9a94] leading-relaxed">再次研读有关“将自己产品化”（Productize Yourself）及知识与技术杠杆的章节。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── AI Lab ── */}
+  <section class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
+    <div class="border-t border-[#ebe8e4] pt-14">
+      <div class="reveal mb-10">
+        <p class="text-[11px] tracking-[0.18em] text-[#b87333] uppercase mb-3 font-semibold">
+          AI LAB
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#1a1a18] mb-3">AI 实验室</h2>
+        <p class="text-[14px] text-[#6b6b65] leading-relaxed">
+          未来核心增长入口：整合 AI 工作流、实验性微型产品、行业产品拆解与个人创业日志。
+        </p>
+      </div>
+
+      <div class="reveal relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1a1a18] to-[#2c2c28] p-6 md:p-8 text-white group shadow-sm animate-fade-in">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+          <div class="absolute -right-16 -bottom-16 w-72 h-72 rounded-full bg-[#b87333]/15 blur-3xl group-hover:bg-[#b87333]/25 transition-all duration-500"></div>
+        </div>
+        
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-xl">
+            <span class="text-[10px] font-semibold tracking-wider px-2 py-0.5 rounded bg-[#b87333] text-white uppercase mb-4 inline-block">
+              Coming Soon
+            </span>
+            <h3 class="text-lg md:text-xl font-bold mb-2 tracking-tight">ai.sanage.xyz</h3>
+            <p class="text-[13px] text-[#aeaea5] leading-relaxed mb-5">
+              这里将作为我的 AI 探索主港，沉淀高效 AI 工作流、前沿 AI 实验与拆解。我们将在这里见证一个用 AI 撬动一人公司的实践日志。
+            </p>
+            <div class="flex flex-wrap gap-2 text-[11px] text-[#c5c5be]">
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 hover:border-white/20 transition-colors">🤖 AI 工作流</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 hover:border-white/20 transition-colors">🧪 AI 实验</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 hover:border-white/20 transition-colors">🔍 产品拆解</span>
+              <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 hover:border-white/20 transition-colors">📝 创业日志</span>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <span class="inline-flex items-center gap-1.5 text-xs text-[#b87333] font-semibold bg-white/10 border border-white/15 px-4.5 py-3 rounded-xl group-hover:bg-[#b87333] group-hover:text-white transition-all duration-300">
+              规划建设中
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
