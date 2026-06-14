@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const title = '博客 · Sanage 随笔与思考';
+const description = 'Jace (三阿哥又长高了吗) 的个人博客：记录关于产品设计、独立开发日常、AI 工作流与个人成长的随笔和思考。';
+const keywords = '博客,随笔,独立开发,个人思考,产品设计,AI工具,三阿哥';
+
+const posts = await getCollection('blogs');
+// Sort posts by date descending
+const sortedPosts = posts.sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime());
+
+// Helper function to format date
+const formatDate = (date: Date) => {
+  return date.toISOString().split('T')[0];
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords} ogImage="/images/og/works.png" schemaType="website">
+  <section class="max-w-2xl mx-auto px-4 pt-10 pb-16 md:pt-16 md:pb-20">
+    <p class="text-xs tracking-[0.14em] text-gray-400 uppercase mb-4 animate-fade-in-up">博客 / BLOG</p>
+    <h1 class="text-2xl font-bold text-gray-900 mb-2 animate-fade-in-up delay-100">随笔与思考</h1>
+    <p class="text-sm text-gray-400 mb-10 animate-fade-in-up delay-100">
+      关于产品设计、独立开发日常、AI 工作流与个人成长的粗浅记录。
+    </p>
+
+    <div class="space-y-6 animate-fade-in-up delay-200">
+      {sortedPosts.map((post) => (
+        <a
+          href={`/blog/${post.slug}/`}
+          class="block border border-gray-100 bg-white rounded-2xl p-6 shadow-sm hover:border-[#b87333]/30 hover:shadow-md transition-all duration-200 group no-underline"
+          onclick={`trackEvent('click_blog_post', {slug: '${post.slug}'})`}
+        >
+          <div class="flex items-center justify-between gap-4 mb-2">
+            <time datetime={post.data.pubDatetime.toISOString()} class="text-xs text-gray-400 font-medium">
+              {formatDate(post.data.pubDatetime)}
+            </time>
+            {post.data.tags && post.data.tags.length > 0 && (
+              <span class="text-[10px] px-2 py-[1px] rounded bg-gray-50 border border-gray-100 text-gray-400">
+                {post.data.tags[0]}
+              </span>
+            )}
+          </div>
+          
+          <h2 class="text-lg font-bold text-[#1a1a18] group-hover:text-[#b87333] transition-colors duration-200 mb-2">
+            {post.data.title}
+          </h2>
+          
+          <p class="text-[13px] text-gray-500 leading-relaxed mb-4">
+            {post.data.description}
+          </p>
+
+          <div class="flex items-center justify-between text-xs text-[#b87333] font-medium">
+            <span class="group-hover:translate-x-1 transition-transform duration-200">
+              阅读全文 →
+            </span>
+            {post.data.tags && post.data.tags.length > 1 && (
+              <div class="flex gap-1.5">
+                {post.data.tags.slice(1).map((tag: string) => (
+                  <span class="text-[10px] text-gray-400 font-normal">#{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

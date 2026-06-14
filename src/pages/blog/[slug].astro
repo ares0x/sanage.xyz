@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blogs');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const title = `${post.data.title} · 博客`;
+const description = post.data.description;
+const keywords = post.data.tags ? post.data.tags.join(',') : '';
+
+// Helper function to format date
+const formatDate = (date: Date) => {
+  return date.toISOString().split('T')[0];
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords} ogImage="/images/og/works.png" schemaType="website">
+  <article class="max-w-2xl mx-auto px-4 pt-10 pb-16 md:pt-16 md:pb-20">
+    {/* 返回链接 */}
+    <div class="mb-8 animate-fade-in-up">
+      <a href="/blog/" class="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#b87333] transition-colors no-underline">
+        ← 返回列表
+      </a>
+    </div>
+
+    {/* 文章头部 */}
+    <header class="mb-10 border-b border-gray-100 pb-8 animate-fade-in-up delay-100">
+      <time datetime={post.data.pubDatetime.toISOString()} class="text-xs text-gray-400 block mb-3 font-medium">
+        发布于 {formatDate(post.data.pubDatetime)}
+      </time>
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight mb-4">
+        {post.data.title}
+      </h1>
+      <p class="text-sm text-gray-500 leading-relaxed">
+        {post.data.description}
+      </p>
+      
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          {post.data.tags.map((tag: string) => (
+            <span class="text-[10px] px-2 py-[2px] rounded-md bg-[#f5f3f0] text-[#8a8a84]">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {/* 文章主体 */}
+    <div class="prose animate-fade-in-up delay-200">
+      <Content />
+    </div>
+
+    {/* 页尾快速导航 */}
+    <footer class="mt-14 pt-8 border-t border-gray-100 flex justify-between items-center text-[13px] text-gray-400 animate-fade-in-up delay-300">
+      <span>三阿哥又长高了吗 · 博客</span>
+      <a href="/blog/" class="text-[#b87333] hover:underline no-underline">
+        返回列表
+      </a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #4b5563; /* gray-600 */
+  }
+  .prose :global(p) {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+  .prose :global(h1), .prose :global(h2), .prose :global(h3), .prose :global(h4) {
+    color: #111827; /* gray-900 */
+    font-weight: 700;
+    margin-top: 1.8em;
+    margin-bottom: 0.8em;
+    letter-spacing: -0.01em;
+  }
+  .prose :global(h1) { font-size: 1.5em; }
+  .prose :global(h2) { font-size: 1.3em; border-bottom: 1px solid #ebe8e4; padding-bottom: 0.3em; }
+  .prose :global(h3) { font-size: 1.15em; }
+  .prose :global(h4) { font-size: 1.05em; }
+  
+  .prose :global(ul), .prose :global(ol) {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+  .prose :global(ul) { list-style-type: disc; }
+  .prose :global(ol) { list-style-type: decimal; }
+  .prose :global(li) {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  .prose :global(blockquote) {
+    margin: 1.5em 0;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #b87333;
+    color: #6b7280; /* gray-500 */
+    font-style: italic;
+    background-color: #fdfcfb;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .prose :global(pre) {
+    margin: 1.5em 0;
+    padding: 1.25rem;
+    background-color: #1a1a18;
+    color: #f3f4f6;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85em;
+    line-height: 1.6;
+  }
+  .prose :global(code) {
+    background-color: #f4f3f0;
+    color: #b87333;
+    padding: 0.2em 0.4em;
+    border-radius: 5px;
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85em;
+  }
+  .prose :global(pre code) {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+  
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2em auto;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+  
+  .prose :global(a) {
+    color: #b87333;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+  .prose :global(a:hover) {
+    color: #9a5e22;
+  }
+  
+  .prose :global(hr) {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid #ebe8e4;
+  }
+</style>

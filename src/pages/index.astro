@@ -56,8 +56,8 @@ const ecosystems = [
     iconBg: '#f0f7f0',
     name: '博客',
     desc: '产品思考 · 独立开发 · 影视文化随笔',
-    domain: 'blog.sanage.xyz',
-    url: 'https://blog.sanage.xyz/',
+    domain: 'sanage.xyz/blog',
+    url: '/blog/',
     cta: '去看看',
     slug: 'blog',
     featured: false,
@@ -108,14 +108,12 @@ const ecosystems = [
         查看作品 <span class="arrow">→</span>
       </a>
       <a
-        href="https://blog.sanage.xyz/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/blog/"
         class="btn-secondary"
         id="hero-cta-blog"
         onclick="trackEvent('click_hero_cta', {destination: 'blog'})"
       >
-        阅读博客 ↗
+        阅读博客 →
       </a>
       <a
         href="/now/"
