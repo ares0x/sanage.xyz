@@ -23,7 +23,20 @@ const formatDate = (date: Date) => {
 };
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} ogImage="/images/og/works.png" schemaType="website">
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  ogImage="/images/og/works.png"
+  ogType="article"
+  schemaType="article"
+  schemaData={{
+    name: post.data.title,
+    description: post.data.description,
+    pubDatetime: post.data.pubDatetime,
+    url: `https://sanage.xyz/blog/${post.slug}/`
+  }}
+>
   <article class="max-w-2xl mx-auto px-4 pt-10 pb-16 md:pt-16 md:pb-20">
     {/* 返回链接 */}
     <div class="mb-8 animate-fade-in-up">

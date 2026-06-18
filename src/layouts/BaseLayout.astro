@@ -13,8 +13,8 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   keywords?: string;
-  schemaType?: 'website' | 'person' | 'quiz';
-  schemaData?: { name?: string; description?: string };
+  schemaType?: 'website' | 'person' | 'quiz' | 'article';
+  schemaData?: { name?: string; description?: string; pubDatetime?: Date; url?: string };
 }
 
 const { title, description, ogImage, ogType, keywords, schemaType, schemaData } = Astro.props;

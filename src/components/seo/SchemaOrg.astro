@@ -1,9 +1,11 @@
 ---
 interface Props {
-  type?: 'website' | 'person' | 'quiz';
+  type?: 'website' | 'person' | 'quiz' | 'article';
   data?: {
     name?: string;
     description?: string;
+    pubDatetime?: Date;
+    url?: string;
   };
 }
 
@@ -65,6 +67,24 @@ const schemas = {
     description: data.description || '',
     inLanguage: 'zh-CN',
     author: person,
+  },
+  article: {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: data.name || '',
+    description: data.description || '',
+    datePublished: data.pubDatetime ? data.pubDatetime.toISOString() : undefined,
+    author: person,
+    publisher: {
+      '@type': 'Person',
+      name: 'Jace',
+      url: siteUrl,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': data.url || siteUrl,
+    },
+    inLanguage: 'zh-CN',
   },
 };
 

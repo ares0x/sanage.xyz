@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = '现在正在做的事 · Sanage';
-const description = 'Jace (三阿哥又长高了吗) 正在关注和构建的内容：CalmFlow 桌面执行系统、认知行为科学、AI 测评题库自动化系统。';
-const keywords = '三阿哥,Jace,now page,正在做什么,CalmFlow,独立开发,个人品牌,状态';
+const description = 'Jace (三阿哥又长高了吗) 正在关注和构建的最新动态快照：自媒体Build in Public内容创作、CalmFlow桌面端、Quiz测评大改版等。';
+const keywords = '三阿哥,Jace,now page,正在做什么,CalmFlow,独立开发,个人品牌,状态,深圳';
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} ogImage="/images/og/about.png" schemaType="person">
@@ -11,28 +11,32 @@ const keywords = '三阿哥,Jace,now page,正在做什么,CalmFlow,独立开发,
     <p class="text-xs tracking-[0.14em] text-gray-400 uppercase mb-4 animate-fade-in-up">现在 / NOW</p>
     <h1 class="text-2xl font-bold text-gray-900 mb-2 animate-fade-in-up delay-100">我正在做什么</h1>
     <p class="text-sm text-gray-400 mb-8 animate-fade-in-up delay-100">
-      这是我当前生活、学习和工作的“快照”。灵感来自 <a href="https://nownownow.com/" target="_blank" rel="noopener noreferrer" class="text-[#b87333] hover:underline">Derek Sivers 的 Now 运动</a>。
+      这是我当前生活、学习和工作的“快照”。灵感来自 <a href="https://nownownow.com/" target="_blank" rel="noopener noreferrer" class="text-[#b87333] hover:underline">Derek Sivers 的 Now 运动</a>。更新频率：至少每月一次，或在有重要里程碑时更新。
     </p>
 
     <div class="space-y-8 animate-fade-in-up delay-200">
-
+      
       {/* 我正在构建 */}
       <div class="border border-gray-100 bg-white rounded-2xl p-6 shadow-sm">
         <h2 class="text-[17px] font-semibold text-[#1a1a18] mb-4 flex items-center gap-2">
           <span class="text-[#b87333]">🎯</span> 我正在构建
         </h2>
-        <ul class="space-y-3 text-[14px] text-gray-600 leading-relaxed list-disc list-inside pl-1">
+        <ul class="space-y-4 text-[14px] text-gray-600 leading-relaxed list-none pl-0">
           <li>
-            <strong class="text-gray-900">自媒体</strong>：围绕个人成长、独立开发日常、AI 工作流与工具体验，产出高质量的 Build in Public 视频与图文内容。
+            <strong class="text-gray-900 block mb-1">🎬 自媒体</strong>
+            围绕个人成长、独立开发日常、AI 工作流与工具体验，产出高质量的 <strong>Build in Public</strong> 视频与图文内容。
           </li>
           <li>
-            <strong class="text-gray-900">CalmFlow</strong>：结合行为科学与 LLM 的桌面端任务自动拆解与心流启动系统。<strong>最近第一版内测版（calmflow.sanage.xyz）已正式上线</strong>，正在持续收集内测反馈。
+            <strong class="text-gray-900 block mb-1">🌊 CalmFlow</strong>
+            结合行为科学与 LLM 的桌面端任务自动拆解与心流启动系统。<strong>最近第一版内测版（calmflow.sanage.xyz）已正式上线</strong>，正在持续收集内测反馈。
           </li>
           <li>
-            <strong class="text-gray-900">Quiz 测评平台</strong>：以《潜伏》《武林外传》等经典影视 IP 和肤色诊断为主题的趣味测评。<strong>最近刚完成了一次完整的设计与交互体验大改版</strong>。
+            <strong class="text-gray-900 block mb-1">📊 Quiz 测评平台</strong>
+            以《潜伏》《武林外传》等经典影视 IP 和肤色诊断为主题的趣味测评。<strong>最近刚完成了一次完整的设计与交互体验大改版</strong>。
           </li>
           <li>
-            <strong class="text-gray-900">Brain 脑力训练室</strong>：基于反应速度与专注力的大脑认知训练小工具，正在规划下一阶段的轻量迭代。
+            <strong class="text-gray-900 block mb-1">🧠 Brain 脑力训练室</strong>
+            基于反应速度与专注力的大脑认知训练小工具，正在规划下一阶段的轻量迭代。
           </li>
         </ul>
       </div>
@@ -42,12 +46,14 @@ const keywords = '三阿哥,Jace,now page,正在做什么,CalmFlow,独立开发,
         <h2 class="text-[17px] font-semibold text-[#1a1a18] mb-4 flex items-center gap-2">
           <span class="text-[#b87333]">📖</span> 我正在学习
         </h2>
-        <ul class="space-y-3 text-[14px] text-gray-600 leading-relaxed list-disc list-inside pl-1">
+        <ul class="space-y-4 text-[14px] text-gray-600 leading-relaxed list-none pl-0">
           <li>
-            <strong class="text-gray-900">认知行为疗法（CBT）</strong>：尤其是如何拆解大脑在面对繁重任务时的“启动阻力”，将其转化为产品设计上的“无摩擦阻尼设计”。
+            <strong class="text-gray-900 block mb-1">🧠 认知行为疗法（CBT）</strong>
+            尤其是如何拆解大脑在面对繁重任务时的“启动阻力”，将其转化为产品设计上的“无摩擦阻尼设计”。
           </li>
           <li>
-            <strong class="text-gray-900">端侧 LLM 优化</strong>：探究如何在本地极速部署并运行 1.5B/7B 级的大模型，从而为 CalmFlow 桌面端用户提供完全隐私安全的离线处理能力。
+            <strong class="text-gray-900 block mb-1">⚡ 端侧 LLM 优化</strong>
+            探究如何在本地极速部署并运行 1.5B/7B 级的大模型，从而为 <strong>CalmFlow</strong> 桌面端用户提供完全隐私安全的离线处理能力。
           </li>
         </ul>
       </div>
@@ -57,12 +63,14 @@ const keywords = '三阿哥,Jace,now page,正在做什么,CalmFlow,独立开发,
         <h2 class="text-[17px] font-semibold text-[#1a1a18] mb-4 flex items-center gap-2">
           <span class="text-[#b87333]">💭</span> 我最近在思考
         </h2>
-        <ul class="space-y-3 text-[14px] text-gray-600 leading-relaxed list-disc list-inside pl-1">
+        <ul class="space-y-4 text-[14px] text-gray-600 leading-relaxed list-none pl-0">
           <li>
-            <strong class="text-gray-900">产品化自己（Productize Yourself）</strong>：如何将我本身的爱好（研究人、认知和决策）作为统一的世界观，具象化地呈现在不同性质的数字产品中。
+            <strong class="text-gray-900 block mb-1">👤 产品化自己（Productize Yourself）</strong>
+            如何将我本身的爱好（研究人、认知和决策）作为统一的世界观，具象化地呈现在不同性质的数字产品中。
           </li>
           <li>
-            <strong class="text-gray-900">独立开发者的杠杆</strong>：如何充分运用 AI 工具，突破一人精力的生理瓶颈，实现更具长尾复利效应的产品构架。
+            <strong class="text-gray-900 block mb-1">🚀 独立开发者的杠杆</strong>
+            如何充分运用 AI 工具，突破一人精力的生理瓶颈，实现更具长尾复利效应的产品构架（一人公司 & AI 增强的一人构建）。
           </li>
         </ul>
       </div>
@@ -96,10 +104,10 @@ const keywords = '三阿哥,Jace,now page,正在做什么,CalmFlow,独立开发,
 
     {/* 页尾快速跳转 */}
     <div class="mt-12 pt-8 border-t border-gray-100 flex justify-between text-[13px] text-gray-500 animate-fade-in-up delay-300">
-      <span>最后更新：2026.06.10</span>
+      <span>最后更新：2026.06.18</span>
       <div class="flex gap-4">
-        <a href="/works/" class="text-[#b87333] hover:underline">去作品集 →</a>
-        <a href="/about/" class="text-[#b87333] hover:underline">关于我 →</a>
+        <a href="/works/" class="text-[#b87333] hover:underline no-underline">去作品集 →</a>
+        <a href="/about/" class="text-[#b87333] hover:underline no-underline">关于我 →</a>
       </div>
     </div>
   </section>
