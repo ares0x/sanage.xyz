@@ -1,0 +1,14 @@
+{
+	"title": "Sanage AI Lab",
+	"description": "关于 AI 建造的观察阵地。聚焦非共识观察（Intelligence）、黑客松日历与作品展示（Build Board）以及极简咨询入口（Advisory）。",
+	"slug": "lab",
+	"emoji": "🧪",
+	"theme": "rose",
+	"tags": ["AI 建造", "黑客松", "非共识观察"],
+	"ogImage": "/images/og/lab.png",
+	"status": "online",
+	"statusLabel": "已上线",
+	"links": [
+		{ "label": "去实验室", "url": "https://lab.sanage.xyz/" }
+	]
+}
