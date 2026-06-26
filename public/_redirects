@@ -11,3 +11,6 @@
 /api/qianfu/* https://quiz.sanage.xyz/api/qianfu/:splat 301
 /api/wulin/* https://quiz.sanage.xyz/api/wulin/:splat 301
 /api/skin-tone/* https://quiz.sanage.xyz/api/skin-tone/:splat 301
+
+# Sitemap redirects for SEO tools
+/sitemap.xml /sitemap-index.xml 301
