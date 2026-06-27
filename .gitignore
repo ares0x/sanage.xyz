@@ -39,3 +39,5 @@ wrangler.toml
 # Editor
 .vscode-test
 .DS_Store
+
+.agent/*

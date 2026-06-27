@@ -2,10 +2,33 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = '三阿哥又长高了吗 · 探索认知、AI与个体成长的一人公司实验港';
-const description = '自我认知实验室——谍战人格测试、武林外传角色匹配、脑力训练、CalmFlow 桌面执行系统、六爻排盘与 AI Lab 建造阵地。我们将有意思的心理认知与效率决策问题做成可以亲身体验的互动数字产品。已累计服务 29,000+ 用户。';
+const description = '自我认知实验室——谍战人格测试、武林外传角色匹配、CalmFlow 桌面执行系统、数字化占卜与 AI Lab 建造阵地。我们将有意思的心理认知与效率决策问题做成可以亲身体验的互动数字产品。已累计服务 29,000+ 用户。';
 
 const ecosystems = [
-  // ── 第一行：核心互动产品 ──
+  // ── 第一行：主推 / 探索入口 ──
+  {
+    icon: '🧪',
+    iconBg: '#fff0f3',
+    name: 'Sanage AI Lab',
+    desc: 'AI 建造阵地 · 聚焦非共识观察 · 极简咨询与作品展示',
+    domain: 'lab.sanage.xyz',
+    url: 'https://lab.sanage.xyz/',
+    cta: '去实验室',
+    slug: 'lab',
+    featured: true,   // 主推产品，绿色高亮
+  },
+  {
+    icon: '🌊',
+    iconBg: '#edf6ff',
+    name: 'CalmFlow',
+    desc: 'AI 任务拆解 · 降低认知负荷 · 心流启动桌面端',
+    domain: 'calmflow.sanage.xyz',
+    url: 'https://calmflow.sanage.xyz/',
+    cta: '立即体验',
+    slug: 'calmflow',
+    featured: false,
+  },
+  // ── 第二行：核心互动产品与内容 ──
   {
     icon: '🕵️',
     iconBg: '#faf0e0',
@@ -18,48 +41,14 @@ const ecosystems = [
     featured: false,
   },
   {
-    icon: '🧠',
-    iconBg: '#f0f0ff',
-    name: 'Brain 训练室',
-    desc: '专注力 · 反应速度 · 注意力 · 30 秒见分晓',
-    domain: 'brain.sanage.xyz',
-    url: 'https://brain.sanage.xyz/',
-    cta: '开始训练',
-    slug: 'brain',
-    featured: false,
-  },
-  {
-    icon: '🌊',
-    iconBg: '#edf6ff',
-    name: 'CalmFlow',
-    desc: 'AI 任务拆解 · 降低认知负荷 · 心流启动桌面端',
-    domain: 'calmflow.sanage.xyz',
-    url: 'https://calmflow.sanage.xyz/',
-    cta: '立即体验',
-    slug: 'calmflow',
-    featured: true,   // 主推产品，绿色高亮
-  },
-  // ── 第二行：其他内容 ──
-  {
-    icon: '☯️',
+    icon: '🔮',
     iconBg: '#fdf3eb',
-    name: 'Liuyao 排盘室',
-    desc: '传统六爻排盘 · 现代易学数理 · 问道解惑',
+    name: 'Bu 占卜室',
+    desc: '数字化多元占卜平台 · 周易起卦与数字算卦 · 问道解惑',
     domain: 'bu.sanage.xyz',
     url: 'https://bu.sanage.xyz/',
     cta: '去求一卦',
-    slug: 'liuyao',
-    featured: false,
-  },
-  {
-    icon: '🧪',
-    iconBg: '#fff0f3',
-    name: 'Sanage AI Lab',
-    desc: 'AI 建造阵地 · 聚焦非共识观察 · 极简咨询与作品展示',
-    domain: 'lab.sanage.xyz',
-    url: 'https://lab.sanage.xyz/',
-    cta: '去实验室',
-    slug: 'lab',
+    slug: 'bu',
     featured: false,
   },
   {
@@ -253,10 +242,10 @@ const ecosystems = [
           <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
           <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between gap-2 mb-1">
-              <h3 class="text-[15px] font-semibold text-[#1a1a18]">Brain 训练室迭代</h3>
-              <span class="text-[10px] text-gray-400 font-normal flex-shrink-0">2026.06.10</span>
+              <h3 class="text-[15px] font-semibold text-[#1a1a18]">Liuyao 升级与域名迁移</h3>
+              <span class="text-[10px] text-gray-400 font-normal flex-shrink-0">2026.06.24</span>
             </div>
-            <p class="text-[12px] text-[#9a9a94] leading-relaxed">优化专注力与注意力反馈曲线算法，使测试数据表现更加契合认知心理学模型。</p>
+            <p class="text-[12px] text-[#9a9a94] leading-relaxed">将六爻排盘服务迁移至新域名 bu.sanage.xyz，同时完成主站链接与 SEO 数据对齐。</p>
           </div>
         </div>
         <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">

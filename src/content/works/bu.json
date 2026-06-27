@@ -1,0 +1,14 @@
+{
+	"title": "Bu 占卜室",
+	"description": "融合周易传统起卦、数字占卜与现代数理算法的数字化解惑平台。问道于心，决断于行，提供多种解惑与决策工具。",
+	"slug": "bu",
+	"emoji": "🔮",
+	"theme": "orange",
+	"tags": ["东方智慧", "周易占卜", "心理解惑"],
+	"ogImage": "/images/og/liuyao.png",
+	"status": "online",
+	"statusLabel": "已上线",
+	"links": [
+		{ "label": "去求一卦", "url": "https://bu.sanage.xyz/" }
+	]
+}
