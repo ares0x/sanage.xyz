@@ -2,20 +2,26 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = '404 - 页面未找到 · 您访问的页面不存在或已被移动';
-const description = '你要寻找的数字空间不存在，或者已经被移入更深的海底。您可以返回 Sanage 主港查看最新的博客文章，或者体验我们开发的脑力训练与测评工具。';
+const description = '你要寻找的数字空间不存在，或者已经被移入更深的海底。您可以返回 Sanage 主港查看最新的博客文章，或者体验我们开发的作品。';
 ---
 
 <BaseLayout title={title} description={description} ogImage="/images/og/home.png">
   <meta slot="head" name="robots" content="noindex, nofollow" />
   <section class="max-w-2xl mx-auto px-6 py-24 md:py-36 text-center min-h-[70vh] flex flex-col justify-center items-center">
-    <div class="text-9xl font-bold text-[#b87333]/10 tracking-widest mb-2 animate-fade-in-up">404</div>
-    <h1 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight animate-fade-in-up delay-100">这个页面迷路了</h1>
-    <p class="text-[14px] text-gray-500 mb-8 max-w-sm leading-relaxed animate-fade-in-up delay-200">你要寻找的数字空间不存在，或者已经被移入更深的海底。</p>
-    <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up delay-300">
-      <a href="/" class="cta-primary">
+    <div class="font-display text-[12rem] leading-none text-[var(--ember)] opacity-10 tracking-widest mb-4">404</div>
+    <h1 class="font-display text-4xl md:text-5xl text-[var(--ink)] mb-4 leading-tight">这个页面迷路了</h1>
+    <p class="text-base text-[var(--ink-soft)] mb-8 max-w-sm leading-relaxed">你要寻找的数字空间不存在，或者已经被移入更深的海底。</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a
+        href="/"
+        class="group inline-flex items-center gap-3 px-6 py-3.5 bg-[var(--ink)] text-[var(--paper)] text-sm tracking-wider uppercase font-mono hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_var(--ember)] transition-all no-underline"
+      >
         返回主港
       </a>
-      <a href="/works/" class="btn-secondary">
+      <a
+        href="/works/"
+        class="inline-flex items-center gap-2 px-6 py-3.5 border border-[var(--ink)] text-sm tracking-wider uppercase font-mono hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors no-underline text-[var(--ink)]"
+      >
         查看作品
       </a>
     </div>

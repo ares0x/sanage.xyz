@@ -1,14 +1,51 @@
 ---
+const currentYear = new Date().getFullYear();
+
+const NAV = [
+  { url: '/works/', label: '作品', en: 'Works' },
+  { url: '/now/', label: '现在', en: 'Now' },
+  { url: '/about/', label: '关于', en: 'About' },
+  { url: '/blog/', label: '博客', en: 'Blog' },
+] as const;
 ---
 
-<footer class="py-5 border-t border-gray-100">
-  <div class="max-w-5xl mx-auto px-4 flex justify-between items-center">
-    <span class="text-xs text-gray-400">Sanage · 三阿哥又长高了吗</span>
-    <div class="flex gap-4">
-      <a href="/works/" class="text-xs text-gray-400 hover:text-gray-600 transition-colors">作品</a>
-      <a href="/now/" class="text-xs text-gray-400 hover:text-gray-600 transition-colors">现在</a>
-      <a href="/about/" class="text-xs text-gray-400 hover:text-gray-600 transition-colors">关于</a>
-      <a href="/blog/" class="text-xs text-gray-400 hover:text-gray-600 transition-colors">博客</a>
+<footer class="rule-top mt-24">
+  <div class="container-edit py-14 grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
+    <div>
+      <p class="eyebrow">COLOPHON</p>
+      <p class="mt-3 font-display text-2xl text-[var(--ink)] leading-snug">
+        三阿哥又长高了吗 —— 一个仍在生长的个人品牌主港。
+      </p>
+      <p class="mt-2 text-sm text-[var(--ink-soft)] max-w-md">
+        以"将自己产品化"为长期方向，记录从认知到产品的每一寸生长。
+      </p>
+    </div>
+    <div>
+      <p class="eyebrow">入口</p>
+      <ul class="mt-3 space-y-2 text-sm list-none pl-0">
+        {NAV.map((n) => (
+          <li>
+            <a href={n.url} class="hover:text-[var(--ember)] transition-colors no-underline text-[var(--ink-soft)]">
+              {n.label} · {n.en}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">阵地</p>
+      <ul class="mt-3 space-y-2 text-sm list-none pl-0">
+        <li><a class="hover:text-[var(--ember)] no-underline text-[var(--ink-soft)]" href="https://lab.sanage.xyz" target="_blank" rel="noopener noreferrer">lab.sanage.xyz</a></li>
+        <li><a class="hover:text-[var(--ember)] no-underline text-[var(--ink-soft)]" href="https://calmflow.sanage.xyz" target="_blank" rel="noopener noreferrer">calmflow.sanage.xyz</a></li>
+        <li><a class="hover:text-[var(--ember)] no-underline text-[var(--ink-soft)]" href="https://quiz.sanage.xyz" target="_blank" rel="noopener noreferrer">quiz.sanage.xyz</a></li>
+        <li><a class="hover:text-[var(--ember)] no-underline text-[var(--ink-soft)]" href="https://bu.sanage.xyz" target="_blank" rel="noopener noreferrer">bu.sanage.xyz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rule-top">
+    <div class="container-edit py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-[var(--ink-soft)] font-mono">
+      <span>© {currentYear} SANAGE · BUILD IN PUBLIC</span>
+      <span>设计与代码 · Crafted with patience</span>
     </div>
   </div>
 </footer>

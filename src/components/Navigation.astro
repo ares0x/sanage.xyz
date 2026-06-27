@@ -1,114 +1,43 @@
 ---
 const currentPath = Astro.url.pathname;
 
-const NAV_LINKS = [
-  { url: '/works/', label: '作品' },
-  { url: '/now/', label: '现在' },
-  { url: '/about/', label: '关于' },
-  { url: '/blog/', label: '博客' },
-];
-
+const NAV = [
+  { url: '/works/', label: '作品', en: 'Works' },
+  { url: '/now/', label: '现在', en: 'Now' },
+  { url: '/about/', label: '关于', en: 'About' },
+  { url: '/blog/', label: '博客', en: 'Blog' },
+] as const;
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-transform duration-300">
-  <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2.5" aria-label="Sanage 首页">
+<header class="sticky top-0 z-40 backdrop-blur-md bg-[color-mix(in_oklab,var(--paper)_82%,transparent)] border-b border-[var(--rule)]">
+  <div class="container-edit flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-3 group no-underline">
       <img
         src="/sanage_logo.png"
-        alt="Sanage"
-        class="h-7 w-auto object-contain transition-opacity duration-200 hover:opacity-80"
+        alt="三阿哥"
+        class="h-9 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
       />
-      <span class="hidden md:flex items-center gap-2.5">
-        <span class="text-gray-200 select-none">|</span>
-        <span class="text-[13px] text-gray-400 font-normal tracking-wide whitespace-nowrap">
-          三阿哥又长高了吗
-        </span>
+      <span class="hidden sm:flex flex-col leading-tight">
+        <span class="font-display text-[17px] text-[var(--ink)]">三阿哥又长高了吗</span>
+        <span class="eyebrow text-[10px]">SANAGE · PERSONAL HUB</span>
       </span>
     </a>
-    <div class="hidden md:flex items-center gap-6">
-      {NAV_LINKS.map(link => (
-        <a
-          href={link.url}
-          target={link.external ? '_blank' : undefined}
-          rel={link.external ? 'noopener noreferrer' : undefined}
-          class={`text-sm transition-colors ${currentPath === link.url ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-900'}`}
-          onclick={`trackEvent('click_nav', {destination: '${link.url}'})`}
-        >
-          {link.label}
-        </a>
-      ))}
-    </div>
-    <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2" aria-label="菜单">
-      <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      <svg id="menu-icon-close" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
+    <nav class="flex items-center gap-1 sm:gap-2">
+      {NAV.map((n) => {
+        const isActive = currentPath === n.url || (n.url !== '/' && currentPath.startsWith(n.url));
+        return (
+          <a
+            href={n.url}
+            class={`group relative px-3 py-2 text-sm no-underline transition-colors ${
+              isActive ? 'text-[var(--ink)] font-medium' : 'text-[var(--ink-soft)] hover:text-[var(--ink)]'
+            }`}
+            onclick={`trackEvent('click_nav', {destination: '${n.url}'})`}
+          >
+            <span class="font-display text-[15px]">{n.label}</span>
+            <span class="ml-1 eyebrow text-[9px] hidden md:inline align-middle">{n.en}</span>
+          </a>
+        );
+      })}
+    </nav>
   </div>
-</nav>
-
-{/* 移动端全屏菜单 - 独立层级避免被父元素层叠上下文限制 */}
-<div id="mobile-menu" class="hidden md:hidden fixed inset-0 top-14 bg-white/95 backdrop-blur-sm z-[60]">
-  <div class="flex flex-col p-6 gap-2">
-    {NAV_LINKS.map(link => (
-      <a
-        href={link.url}
-        target={link.external ? '_blank' : undefined}
-        rel={link.external ? 'noopener noreferrer' : undefined}
-        class={`mobile-nav-link text-lg py-3 border-b border-gray-100 ${currentPath === link.url ? 'text-gray-900 font-medium' : 'text-gray-500'}`}
-        onclick={`trackEvent('click_nav', {destination: '${link.url}'})`}
-      >
-        {link.label}
-      </a>
-    ))}
-  </div>
-</div>
-
-<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-50 safe-area-pb">
-  <div class="flex justify-around items-center h-14">
-    {NAV_LINKS.map(link => (
-      <a href={link.url} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined} class={`flex flex-col items-center gap-0.5 ${currentPath === link.url ? 'text-gray-900' : 'text-gray-400'}`} onclick={`trackEvent('click_nav', {destination: '${link.url}'})`}>
-        <span class="text-xs">{link.label}</span>
-      </a>
-    ))}
-  </div>
-</div>
-<div class="md:hidden h-14"></div>
-
-<script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
-
-  function toggleMenu() {
-    if (!menu) return;
-    const isHidden = menu.classList.toggle('hidden');
-    if (iconOpen && iconClose) {
-      iconOpen.classList.toggle('hidden', !isHidden);
-      iconClose.classList.toggle('hidden', isHidden);
-    }
-    // 菜单打开时禁止背景滚动
-    document.body.style.overflow = isHidden ? '' : 'hidden';
-  }
-
-  if (btn && menu) {
-    btn.addEventListener('click', toggleMenu);
-  }
-
-  // 点击菜单链接后自动关闭菜单
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      if (menu && !menu.classList.contains('hidden')) {
-        toggleMenu();
-      }
-    });
-  });
-
-  // 点击菜单外部区域（非链接区域）关闭菜单
-  if (menu) {
-    menu.addEventListener('click', (e) => {
-      if (e.target === menu) {
-        toggleMenu();
-      }
-    });
-  }
-</script>
+</header>

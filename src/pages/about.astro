@@ -2,130 +2,60 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = '关于 Jace · 三阿哥又长高了吗 · 独立开发者与创作者简介';
-const description = 'Jace，一名开发者与独立创作者。致力于“把想法变成可以被体验的产品”。核心项目包含自媒体Build in Public内容创作、Quiz测评平台、CalmFlow桌面端执行系统与数字化占卜平台。详细介绍我的个人产品理念与技术栈生态。';
+const description = 'Jace，一名开发者与独立创作者。致力于“把想法变成可以被体验的产品”。核心项目包含自媒体Build in Public内容创作、Quiz测评平台、CalmFlow桌面端执行系统与数字化占卜平台。';
 const keywords = '三阿哥又长高了吗,Jace,sanage,独立开发者,创作者,开发者,个人品牌,个人成长,独立开发,CalmFlow,Quiz';
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} ogImage="/images/og/about.png" schemaType="person">
-  <section class="max-w-2xl mx-auto px-4 pt-10 pb-16 md:pt-16 md:pb-20">
-    <p class="text-xs tracking-[0.14em] text-gray-400 uppercase mb-4">关于我 / ABOUT</p>
-    <h1 class="text-2xl font-bold text-gray-900 mb-8">我是 Jace，一名开发者和独立创作者。</h1>
 
-    <div class="space-y-6 text-[15px] text-gray-600 leading-[1.8]">
-      <p>
-        我更关注的是：<strong class="text-gray-900 font-semibold">把想法变成可以被体验的产品</strong>，而不是局限在某一种题材或表达形式。
-      </p>
-
-      {/* 起源 */}
-      <h2 class="text-lg font-bold text-gray-900 pt-4 mb-2 flex items-center gap-1.5">
-        🎬 起源：《深海人格档案》
-      </h2>
-      <p>
-        《深海人格档案》是我做的第一个互动作品，灵感来自谍战剧《潜伏》。当时我在想，如果把观众放进那些关键情境里，他们会如何选择？这个问题，最终变成了一个可以被体验的测试。
-      </p>
-      <p>
-        这背后是我的核心产品哲学：<strong>解决自己的问题（Solve Your Own Problem）</strong> —— 从自己的好奇心出发，把一个问题变成一个可交互的答案。
-      </p>
-
-      {/* 现在 */}
-      <h2 class="text-lg font-bold text-gray-900 pt-4 mb-2 flex items-center gap-1.5">
-        🧭 现在
-      </h2>
-      <p>
-        这个站点已经从单一作品展示，升级为我的个人品牌总部与作品集。我目前核心开发与运营的内容包括：
-      </p>
-
-      {/* 产品矩阵表格 */}
-      <div class="overflow-x-auto my-6 border border-gray-100 rounded-xl shadow-sm">
-        <table class="min-w-full divide-y divide-gray-100 text-sm">
-          <thead class="bg-gray-50/50">
-            <tr>
-              <th scope="col" class="px-4 py-3 text-left font-semibold text-[#1a1a18]">产品/方向</th>
-              <th scope="col" class="px-4 py-3 text-left font-semibold text-[#1a1a18]">定位</th>
-              <th scope="col" class="px-4 py-3 text-left font-semibold text-[#1a1a18]">详情</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100 text-gray-600">
-            <tr>
-              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">🎬 自媒体</td>
-              <td class="px-4 py-3">公开构建（Build in Public）内容创作</td>
-              <td class="px-4 py-3">品牌矩阵运营，多平台分发</td>
-            </tr>
-
-            <tr>
-              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">📊 Quiz</td>
-              <td class="px-4 py-3">测评平台</td>
-              <td class="px-4 py-3">以经典影视 IP 为主题的趣味人格测评</td>
-            </tr>
-            <tr>
-              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">🔮 Bu 占卜室</td>
-              <td class="px-4 py-3">数字化多元占卜平台</td>
-              <td class="px-4 py-3">融合传统周易与现代算法的解惑决策工具集</td>
-            </tr>
-            <tr>
-              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">🌊 CalmFlow</td>
-              <td class="px-4 py-3">桌面端 AI 任务拆解系统</td>
-              <td class="px-4 py-3">行为科学 + LLM，心流启动</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p>
-        最近进展：<strong>CalmFlow</strong> 第一版内测版已顺利上线，<strong>Quiz</strong> 测评平台也刚完成了一次完整的整体设计与视觉体验更新。
-      </p>
-
-      {/* 域名 */}
-      <h2 class="text-lg font-bold text-gray-900 pt-4 mb-2 flex items-center gap-1.5">
-        🏷️ 关于 sanage.xyz 这个域名
-      </h2>
-      <p>
-        我在很多平台的昵称是「三阿哥又长高了吗」，<code class="text-[#b87333] px-1 bg-gray-50 border border-gray-100 rounded">sanage.xyz</code> 是用一个更短的方式把它保留下来——它是我的数字身份 ID，横跨所有平台。
-      </p>
-
-      {/* 信念 */}
-      <h2 class="text-lg font-bold text-gray-900 pt-4 mb-2 flex items-center gap-1.5">
-        🧠 我相信什么
-      </h2>
-      <ul class="list-disc pl-5 space-y-2">
-        <li>
-          <strong class="text-gray-900">一人公司</strong>：借助 AI 工具链，一个人可以构建并运营多个产品。
-        </li>
-        <li>
-          <strong class="text-gray-900">公开构建 (Build in Public)</strong>：透明地构建，让过程本身成为最好的营销。
-        </li>
-        <li>
-          <strong class="text-gray-900">渐进式提炼</strong>：一次思考，多次产出——从短想法到长文到视频，内容可以逐层深化。
-        </li>
-        <li>
-          <strong class="text-gray-900">产品化自己</strong>：将我对人、认知和决策的研究，具象化为不同性质的数字产品。
-        </li>
-      </ul>
-    </div>
-
-    {/* 联系合作 */}
-    <div class="mt-12 pt-8 border-t border-gray-100">
-      <p class="text-sm text-gray-500 mb-4">如果你有有趣的想法，想一起做点东西，可以在这里找到我：</p>
-      <div class="flex flex-col gap-2">
-        <a href="https://www.xiaohongshu.com/user/profile/61d139c9000000001000ad68" target="_blank" rel="noopener"
-           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 hover:text-[#b87333] transition-colors"
-           onclick="trackEvent('click_social', {platform: 'xiaohongshu'})">
-          <span>小红书</span>
-          <span class="text-gray-400 text-xs">三阿哥又长高了吗 →</span>
-        </a>
-        <a href="https://www.douyin.com/user/MS4wLjABAAAAkX_bNTQY60w-LFB2bzP1fU-OP7sJba-qSC-VCOB5OzU" target="_blank" rel="noopener"
-           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 hover:text-[#b87333] transition-colors"
-           onclick="trackEvent('click_social', {platform: 'douyin'})">
-          <span>抖音</span>
-          <span class="text-gray-400 text-xs">三阿哥又长高了吗 →</span>
-        </a>
-        <a href="https://web.okjike.com/u/493AC967-4EAA-4F10-A618-25150146733E" target="_blank" rel="noopener"
-           class="flex justify-between items-center text-sm text-gray-600 px-4 py-3 bg-white border border-gray-100 rounded-lg hover:border-gray-200 hover:text-[#b87333] transition-colors"
-           onclick="trackEvent('click_social', {platform: 'jike'})">
-          <span>即刻</span>
-          <span class="text-gray-400 text-xs">三阿哥又长高了吗 →</span>
-        </a>
-      </div>
-    </div>
+  {/* Page Header */}
+  <section class="container-edit pt-16 md:pt-24 pb-12 border-b border-[var(--rule)]">
+    <p class="eyebrow">ABOUT · 关于</p>
+    <h1 class="mt-4 font-display text-6xl md:text-8xl leading-[0.95] text-[var(--ink)] max-w-4xl">
+      把自己 <span class="italic text-[var(--ember)]">产品化。</span>
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg text-[var(--ink-soft)] leading-relaxed">
+      独立开发者 · 写作者 · 构建认知与效率工具。相信知识杠杆与长期主义。
+    </p>
   </section>
+
+  {/* Content Columns */}
+  <section class="container-edit py-16 grid md:grid-cols-12 gap-12">
+    <div class="md:col-span-7 space-y-6 text-[var(--ink)] leading-relaxed text-lg">
+      <p>
+        我是三阿哥。过去几年，我用 <em class="text-[var(--ember)] not-italic">Quiz 测评室</em> 让 29,000+
+        人完成过一次关于自己的小型实验；用 <em class="text-[var(--ember)] not-italic">CalmFlow</em>
+        尝试让「启动」这件事不再有摩擦；用 <em class="text-[var(--ember)] not-italic">Bu 占卜室</em>
+        把传统占卜搬进当代界面。
+      </p>
+      <p>
+        最近在 <em class="text-[var(--ember)] not-italic">Sanage AI Lab</em> 把这一切重新组织成一个「AI 阵地」——
+        一边沉淀作品，一边把非共识的观察整理成可被复用的建议。
+      </p>
+      <p>
+        写作是我对外公开的最稳定杠杆。所有产品背后的思考，最终都会回到{" "}
+        <a class="underline decoration-[var(--ember)] underline-offset-4 text-[var(--ink)] font-medium" href="/blog/">博客</a>。
+      </p>
+    </div>
+
+    <aside class="md:col-span-5 space-y-8">
+      <div class="border border-[var(--rule)] bg-[var(--card)] p-6">
+        <p class="eyebrow">信条 · CREDO</p>
+        <ul class="mt-4 space-y-3 font-display text-2xl text-[var(--ink)] leading-snug list-none pl-0">
+          <li>— 把自己产品化。</li>
+          <li>— 用知识杠杆，而非时间杠杆。</li>
+          <li>— 公开构建，被时间复利。</li>
+        </ul>
+      </div>
+      <div class="border border-[var(--rule)] bg-[var(--card)] p-6">
+        <p class="eyebrow">联络 · ELSEWHERE</p>
+        <ul class="mt-4 space-y-2 font-mono text-sm list-none pl-0">
+          <li>X / Twitter — <a class="text-[var(--ember)] no-underline" href="https://okjike.com/u/493AC967-4EAA-4F10-A618-25150146733E" target="_blank" rel="noopener noreferrer">@三阿哥又长高了吗</a></li>
+          <li>Email — <a class="text-[var(--ember)] no-underline" href="mailto:hi@sanage.xyz">hi@sanage.xyz</a></li>
+          <li>RSS — <a class="text-[var(--ember)] no-underline" href="/sitemap-index.xml">/sitemap-index.xml</a></li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+
 </BaseLayout>

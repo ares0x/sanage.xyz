@@ -1,317 +1,343 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
-const title = '三阿哥又长高了吗 · 探索认知、AI与个体成长的一人公司实验港';
-const description = '自我认知实验室——谍战人格测试、武林外传角色匹配、CalmFlow 桌面执行系统、数字化占卜与 AI Lab 建造阵地。我们将有意思的心理认知与效率决策问题做成可以亲身体验的互动数字产品。已累计服务 29,000+ 用户。';
+const title = '三阿哥又长高了吗 · 个人品牌主港';
+const description = '29,000+ 人参与的认知与效率工具集——AI 实验室、CalmFlow 心流、Quiz 测评、Bu 占卜与博客。';
 
-const ecosystems = [
-  // ── 第一行：主推 / 探索入口 ──
+type Product = {
+  tag?: string;
+  emoji: string;
+  title: string;
+  sub: string;
+  desc: string;
+  href: string;
+  domain: string;
+  cta: string;
+  featured?: boolean;
+  internal?: boolean;
+};
+
+const PRODUCTS: Product[] = [
   {
-    icon: '🧪',
-    iconBg: '#fff0f3',
-    name: 'Sanage AI Lab',
-    desc: 'AI 建造阵地 · 聚焦非共识观察 · 极简咨询与作品展示',
-    domain: 'lab.sanage.xyz',
-    url: 'https://lab.sanage.xyz/',
-    cta: '去实验室',
-    slug: 'lab',
-    featured: true,   // 主推产品，绿色高亮
+    tag: "新",
+    emoji: "🧪",
+    title: "Sanage AI Lab",
+    sub: "AI 建造阵地 · 非共识观察",
+    desc: "AI 时代的极简咨询与作品展示，聚焦非共识的产品视角与实验。",
+    href: "https://lab.sanage.xyz",
+    domain: "lab.sanage.xyz",
+    cta: "去实验室",
+    featured: true,
   },
   {
-    icon: '🌊',
-    iconBg: '#edf6ff',
-    name: 'CalmFlow',
-    desc: 'AI 任务拆解 · 降低认知负荷 · 心流启动桌面端',
-    domain: 'calmflow.sanage.xyz',
-    url: 'https://calmflow.sanage.xyz/',
-    cta: '立即体验',
-    slug: 'calmflow',
-    featured: false,
-  },
-  // ── 第二行：核心互动产品与内容 ──
-  {
-    icon: '🕵️',
-    iconBg: '#faf0e0',
-    name: 'Quiz 测评室',
-    desc: '谍战人格测试 · 武林外传角色匹配 · 肤色诊断',
-    domain: 'quiz.sanage.xyz',
-    url: 'https://quiz.sanage.xyz/',
-    cta: '开始测试',
-    slug: 'quiz',
-    featured: false,
+    emoji: "🌊",
+    title: "CalmFlow",
+    sub: "AI 任务拆解 · 心流启动",
+    desc: "桌面端心流工具，降低认知负荷，让启动这一步不再有摩擦。",
+    href: "https://calmflow.sanage.xyz",
+    domain: "calmflow.sanage.xyz",
+    cta: "立即体验",
   },
   {
-    icon: '🔮',
-    iconBg: '#fdf3eb',
-    name: 'Bu 占卜室',
-    desc: '数字化多元占卜平台 · 周易起卦与数字算卦 · 问道解惑',
-    domain: 'bu.sanage.xyz',
-    url: 'https://bu.sanage.xyz/',
-    cta: '去求一卦',
-    slug: 'bu',
-    featured: false,
+    emoji: "🕵️",
+    title: "Quiz 测评室",
+    sub: "人格 · 角色 · 肤色诊断",
+    desc: "谍战人格、武林外传角色匹配、肤色诊断——29,000+ 人玩过。",
+    href: "https://quiz.sanage.xyz",
+    domain: "quiz.sanage.xyz",
+    cta: "开始测试",
   },
   {
-    icon: '✍️',
-    iconBg: '#f0f7f0',
-    name: '博客',
-    desc: '产品思考 · 独立开发 · 影视文化随笔',
-    domain: 'sanage.xyz/blog',
-    url: '/blog/',
-    cta: '去看看',
-    slug: 'blog',
-    featured: false,
+    emoji: "🔮",
+    title: "Bu 占卜室",
+    sub: "数字化多元占卜",
+    desc: "周易起卦与数字算卦，问道解惑，把传统装进当代界面。",
+    href: "https://bu.sanage.xyz",
+    domain: "bu.sanage.xyz",
+    cta: "去求一卦",
+  },
+  {
+    emoji: "✍️",
+    title: "博客",
+    sub: "产品 · 独立开发 · 文化",
+    desc: "记录产品思考、独立开发与影视文化随笔，时常更新。",
+    href: "/blog/",
+    domain: "sanage.xyz/blog",
+    cta: "去看看",
+    internal: true,
   },
 ];
+
+const LOG = [
+  { date: "2026.06.24", title: "Liuyao 升级与域名迁移", body: "六爻排盘服务迁至 bu.sanage.xyz，主站链接与 SEO 数据已对齐。", tag: "SHIPPED" },
+  { date: "2026.06.14", title: "CalmFlow 桌面版内测", body: "调优语音分析触发器与心流无摩擦启动链路；本周加入快捷键与系统托盘。", tag: "BUILDING" },
+  { date: "2026.06.05", title: "AI 测评系统开发", body: "研究通过 LLM 管道按特定人设和危机场景生成题库的流程。", tag: "RESEARCH" },
+  { date: "2026.05.28", title: "重读《纳瓦尔宝典》", body: "再读「将自己产品化」与杠杆章节，重新校准长期方向。", tag: "READING" },
+] as const;
+
+const STATS = [
+  { k: "29,000+", v: "测试参与者" },
+  { k: "5", v: "在跑产品线" },
+  { k: "120+", v: "公开构建日志" },
+  { k: "∞", v: "正在生长" },
+];
+
+const posts = await getCollection('blogs');
+const sortedPosts = posts.sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime());
+const latestPost = sortedPosts[0];
+const blogTeasers = sortedPosts.slice(0, 3);
 ---
 
 <BaseLayout title={title} description={description} ogImage="/images/og/home.png" schemaType="website">
 
-  {/* ── Hero ── */}
-  <section class="max-w-4xl mx-auto px-6 pt-16 pb-20 md:pt-28 md:pb-28 min-h-[calc(100vh-3.5rem)] flex flex-col justify-center">
-
-    {/* 装饰背景圆 */}
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
-      <div style="
-        position: absolute;
-        top: -120px; right: -80px;
-        width: 480px; height: 480px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(184,115,51,0.06) 0%, transparent 70%);
-      "></div>
-    </div>
-
-    {/* 小标签 */}
-    <div class="animate-fade-in-up flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[11px] tracking-[0.18em] text-[#b87333] uppercase mb-7 font-medium">
-      <span>三阿哥的个人品牌主港</span>
-      <span class="w-1 h-1 rounded-full bg-gray-300 hidden sm:inline-block"></span>
-      <span class="text-gray-400 font-normal normal-case tracking-normal">已有 29,000+ 人参与测试</span>
-    </div>
-
-    {/* 主标题 */}
-    <h1 class="animate-fade-in-up delay-100 text-[48px] md:text-[68px] font-bold text-[#1a1a18] leading-[1.15] mb-7 tracking-tight">
-      三阿哥又长高了吗
-    </h1>
-
-    {/* 副文案 */}
-    <p class="animate-fade-in-up delay-200 text-[16px] md:text-[18px] text-[#6b6b65] leading-[1.75] mb-10 max-w-[520px]">
-      29,000+ 人用过的认知与效率工具集。<br class="hidden sm:inline" />
-      测评你的人格 · 训练你的大脑 · 管理你的状态。
-    </p>
-
-    {/* CTA 区 */}
-    <div class="animate-fade-in-up delay-300 flex flex-wrap items-center gap-3.5">
-      <a
-        href="#ecosystem"
-        class="cta-primary"
-        id="hero-cta-works"
-        onclick="trackEvent('click_hero_cta', {destination: 'works'})"
-      >
-        查看作品 <span class="arrow">→</span>
-      </a>
-      <a
-        href="/blog/"
-        class="btn-secondary"
-        id="hero-cta-blog"
-        onclick="trackEvent('click_hero_cta', {destination: 'blog'})"
-      >
-        阅读博客 →
-      </a>
-      <a
-        href="/now/"
-        class="btn-secondary"
-        id="hero-cta-now"
-        onclick="trackEvent('click_hero_cta', {destination: 'now'})"
-      >
-        关注动态 →
-      </a>
-    </div>
-
-    {/* 最新随笔预览 */}
-    <div class="animate-fade-in-up delay-300 mt-7 flex items-center gap-2 text-[12px] text-gray-500">
-      <span class="px-1.5 py-0.5 rounded bg-amber-50 text-[#b87333] border border-amber-200/50 font-medium text-[10px] scale-95 flex-shrink-0">最新随笔</span>
-      <a href="/blog/core-of-solo-company-is-person/" class="text-gray-600 hover:text-[#b87333] hover:underline transition-colors truncate">
-        《一人公司的核心是一人，不是公司》 →
-      </a>
-    </div>
-
-    {/* 向下滚动提示 */}
-    <div class="animate-fade-in delay-400 mt-14 hidden md:flex items-center gap-2 text-[11px] text-[#c5c5be] tracking-wider">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-      SANAGE LAB
-    </div>
-  </section>
-
-  {/* ── 生态索引 ── */}
-  <section id="ecosystem" class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
-    <div class="border-t border-[#ebe8e4] pt-14">
-
-      <div class="reveal mb-10">
-        <p class="text-[11px] tracking-[0.18em] text-[#b87333] uppercase mb-3 font-semibold">
-          SANAGE LAB
+  {/* Hero Section */}
+  <section class="container-edit pt-16 md:pt-24 pb-20 md:pb-28">
+    <div class="grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-8">
+        <div class="flex items-center gap-3">
+          <span class="chip">
+            <span class="h-1.5 w-1.5 rounded-full bg-[var(--ember)]"></span>
+            三阿哥的个人品牌主港
+          </span>
+          <span class="eyebrow">已有 29,000+ 人参与</span>
+        </div>
+        <h1 class="mt-6 font-display text-[15vw] md:text-[9.5vw] lg:text-[8rem] leading-[0.95] tracking-tight text-[var(--ink)]">
+          三阿哥<br />
+          <span class="italic text-[var(--ember)]">又长高了</span>吗
+        </h1>
+        <p class="mt-8 max-w-xl text-lg text-[var(--ink-soft)] leading-relaxed">
+          一份持续生长的认知与效率工具集——
+          <span class="text-[var(--ink)] font-medium">测评你的人格</span>，
+          <span class="text-[var(--ink)] font-medium">训练你的大脑</span>，
+          <span class="text-[var(--ink)] font-medium">管理你的状态</span>。
         </p>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#1a1a18] mb-3">产品矩阵</h2>
-        <p class="text-[14px] text-[#6b6b65] max-w-xl leading-relaxed">
-          正在构建帮助人们认识自己、提升认知和采取行动的工具。
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {ecosystems.map((item) => (
+        <div class="mt-10 flex flex-wrap items-center gap-3">
           <a
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class={`eco-card reveal group flex flex-col rounded-2xl p-5 no-underline ${
-              item.featured
-                ? 'bg-white border-2 border-[#1D9E75]'
-                : 'bg-white border border-[#ebe8e4]'
-            }`}
-            id={`eco-card-${item.slug}`}
-            onclick={`trackEvent('click_eco_card', {destination: '${item.slug}'})`}
+            href="#ecosystem"
+            class="group inline-flex items-center gap-3 px-6 py-3.5 bg-[var(--ink)] text-[var(--paper)] text-sm tracking-wider uppercase font-mono hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_var(--ember)] transition-all no-underline"
           >
-            {/* 图标 + 新标签 */}
-            <div class="flex items-start justify-between mb-4">
-              <div
-                class="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-                style={`background-color: ${item.iconBg};`}
-              >
-                {item.icon}
-              </div>
-              {item.featured && (
-                <span class="text-[10px] font-medium px-2 py-[3px] rounded-full bg-[#EAF7F0] text-[#1D9E75] flex-shrink-0">
-                  新
-                </span>
-              )}
-            </div>
-
-            {/* 名称 */}
-            <div class={`text-[15px] font-semibold mb-1.5 ${item.featured ? 'text-[#0D2016]' : 'text-[#1a1a18]'}`}>
-              {item.name}
-            </div>
-
-            {/* 描述 */}
-            <p class="text-[12px] text-[#9a9a94] leading-[1.65] mb-4 flex-1">
-              {item.desc}
-            </p>
-
-            {/* 域名 + 箭头 */}
-            <div class="flex items-end justify-between gap-2 mt-auto">
-              <span class="text-[11px] text-[#c5c5be] break-all leading-tight">{item.domain}</span>
-              <span
-                class={`text-[12px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap flex-shrink-0 ${
-                  item.featured ? 'text-[#1D9E75]' : 'text-[#b87333]'
-                }`}
-              >
-                {item.cta} →
-              </span>
-            </div>
+            查看作品 <span class="transition-transform group-hover:translate-x-1">→</span>
           </a>
-        ))}
+          <a
+            href="/blog/"
+            class="inline-flex items-center gap-2 px-6 py-3.5 border border-[var(--ink)] text-sm tracking-wider uppercase font-mono hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors no-underline text-[var(--ink)]"
+          >
+            阅读博客 →
+          </a>
+          <a
+            href="/now/"
+            class="inline-flex items-center gap-2 px-6 py-3.5 text-sm tracking-wider uppercase font-mono text-[var(--ink-soft)] hover:text-[var(--ember)] transition-colors no-underline"
+          >
+            关注动态 →
+          </a>
+        </div>
       </div>
+
+      <aside class="md:col-span-4 border-l border-[var(--rule)] pl-6 md:pl-8 self-stretch flex flex-col justify-end">
+        <p class="eyebrow">最新随笔 · LATEST ESSAY</p>
+        {latestPost && (
+          <a
+            href={`/blog/${latestPost.slug}/`}
+            class="mt-3 group block no-underline"
+          >
+            <h3 class="font-display text-2xl md:text-3xl leading-snug text-[var(--ink)] group-hover:text-[var(--ember)] transition-colors">
+              《{latestPost.data.title}》
+            </h3>
+            <p class="mt-3 text-sm text-[var(--ink-soft)] line-clamp-2">
+              {latestPost.data.description}
+            </p>
+            <p class="mt-4 font-mono text-xs text-[var(--ember)]">阅读全文 →</p>
+          </a>
+        )}
+
+        <div class="mt-10 rule-top pt-6">
+          <p class="eyebrow">现在 · NOW</p>
+          <p class="mt-2 text-sm text-[var(--ink)]">
+            CalmFlow 桌面端内测中 · AI 测评系统迭代第三周
+          </p>
+        </div>
+      </aside>
     </div>
   </section>
 
-  {/* ── Build in Public ── */}
-  <section class="max-w-4xl mx-auto px-6 pb-20 md:pb-28">
-    <div class="border-t border-[#ebe8e4] pt-14">
-      <div class="reveal mb-10">
-        <p class="text-[11px] tracking-[0.18em] text-[#b87333] uppercase mb-3 font-semibold">
-          BUILD IN PUBLIC
-        </p>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#1a1a18] mb-3">最近在做什么</h2>
-        <p class="text-[14px] text-[#6b6b65] leading-relaxed">
-          公开构建（Build in Public）是我的创作逻辑，这里记录我最近的迭代步伐与日常探索。
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
-          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <h3 class="text-[15px] font-semibold text-[#1a1a18]">CalmFlow 桌面版内测</h3>
-              <span class="text-[10px] text-gray-400 font-normal flex-shrink-0">2026.06.14</span>
-            </div>
-            <p class="text-[12px] text-[#9a9a94] leading-relaxed">桌面端内测正在开展中，着重调优语音分析触发器与心流无摩擦启动链路。</p>
-          </div>
-        </div>
-        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
-          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <h3 class="text-[15px] font-semibold text-[#1a1a18]">Liuyao 升级与域名迁移</h3>
-              <span class="text-[10px] text-gray-400 font-normal flex-shrink-0">2026.06.24</span>
-            </div>
-            <p class="text-[12px] text-[#9a9a94] leading-relaxed">将六爻排盘服务迁移至新域名 bu.sanage.xyz，同时完成主站链接与 SEO 数据对齐。</p>
-          </div>
-        </div>
-        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
-          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <h3 class="text-[15px] font-semibold text-[#1a1a18]">AI 测评系统开发</h3>
-              <span class="text-[10px] text-gray-400 font-normal flex-shrink-0">2026.06.05</span>
-            </div>
-            <p class="text-[12px] text-[#9a9a94] leading-relaxed">研究通过 LLM 管道进行基于特定人设和危机场景的测评题库自动化生成流程。</p>
-          </div>
-        </div>
-        <div class="reveal bg-white border border-[#ebe8e4] rounded-2xl p-5 flex items-start gap-4">
-          <span class="text-[#1D9E75] text-base font-bold mt-0.5">✓</span>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <h3 class="text-[15px] font-semibold text-[#1a1a18]">阅读《纳瓦尔宝典》</h3>
-              <span class="text-[10px] text-gray-400 font-normal flex-shrink-0">2026.05.28</span>
-            </div>
-            <p class="text-[12px] text-[#9a9a94] leading-relaxed">再次研读有关“将自己产品化”（Productize Yourself）及知识与技术杠杆的章节。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal mt-8 text-center">
-        <a href="/now/" class="inline-flex items-center gap-1 text-[13px] font-medium text-[#b87333] hover:text-[#9a5e22] hover:underline transition-colors no-underline">
-          查看完整行动日志 →
-        </a>
-      </div>
+  {/* Marquee Section */}
+  <div class="rule-top border-b border-[var(--rule)] bg-[var(--paper-deep)] overflow-hidden">
+    <div class="flex gap-12 py-4 whitespace-nowrap animate-[marquee_38s_linear_infinite] font-display text-2xl text-[var(--ink)]">
+      {["SANAGE LAB", "BUILD IN PUBLIC", "PRODUCTIZE YOURSELF", "认知 · 效率 · 心流", "29,000+ TESTERS"].concat(
+        ["SANAGE LAB", "BUILD IN PUBLIC", "PRODUCTIZE YOURSELF", "认知 · 效率 · 心流", "29,000+ TESTERS"],
+        ["SANAGE LAB", "BUILD IN PUBLIC", "PRODUCTIZE YOURSELF", "认知 · 效率 · 心流", "29,000+ TESTERS"]
+      ).map((t) => (
+        <span class="flex items-center gap-12">
+          {t}
+          <span class="text-[var(--ember)]">✦</span>
+        </span>
+      ))}
     </div>
-  </section>
+  </div>
 
-  {/* ── 关于（极简）── */}
-  <section class="max-w-4xl mx-auto px-6 pb-16">
-    <div class="border-t border-[#ebe8e4] pt-10">
-      <p class="reveal text-[14px] text-[#9a9a94] leading-[1.9]">
-        三阿哥又长高了吗。喜欢把有趣的问题做成能玩的东西。
-        <a
-          href="/about/"
-          class="text-[#b87333] hover:underline underline-offset-2 ml-1"
-          onclick="trackEvent('click_nav', {destination: 'about'})"
-        >
-          关于我 →
-        </a>
+  {/* Products Matrix */}
+  <section id="ecosystem" class="container-edit pt-24 pb-12 scroll-mt-20">
+    <header class="grid md:grid-cols-12 gap-6 items-end mb-10">
+      <div class="md:col-span-7">
+        <p class="eyebrow">产品矩阵 · ECOSYSTEM</p>
+        <h2 class="mt-3 font-display text-5xl md:text-6xl text-[var(--ink)] leading-[1.02]">
+          正在构建，让人 <span class="italic text-[var(--ember)]">认识自己</span>、<br />提升认知、采取行动 的工具。
+        </h2>
+      </div>
+      <p class="md:col-span-5 text-[var(--ink-soft)] md:text-right md:pb-2">
+        每一个产品都是一次对"将自己产品化"的实验。点击进入子站，或读它背后的笔记。
       </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5">
+      {PRODUCTS.map((p, idx) => {
+        const span = p.featured
+          ? "md:col-span-4 md:row-span-2 min-h-[420px]"
+          : idx === 3 || idx === 4
+            ? "md:col-span-3 min-h-[220px]"
+            : "md:col-span-2 min-h-[220px]";
+        
+        return (
+          <a
+            href={p.href}
+            target={p.internal ? undefined : "_blank"}
+            rel={p.internal ? undefined : "noopener noreferrer"}
+            class={`block no-underline ${span}`}
+            onclick={`trackEvent('click_eco_card', {destination: '${p.title}'})`}
+          >
+            <article class="group relative h-full flex flex-col justify-between p-6 md:p-8 bg-[var(--card)] border border-[var(--rule)] hover:border-[var(--ink)] transition-all overflow-hidden">
+              <div class="flex items-start justify-between">
+                <span class="text-4xl md:text-5xl">{p.emoji}</span>
+                {p.tag && (
+                  <span class="chip border-[var(--ember)] text-[var(--ember)]">
+                    <span class="h-1.5 w-1.5 rounded-full bg-[var(--ember)]"></span> {p.tag}
+                  </span>
+                )}
+              </div>
+
+              <div class="mt-8">
+                <h3 class={`font-display text-[var(--ink)] leading-tight ${p.featured ? "text-5xl md:text-6xl" : "text-3xl"}`}>
+                  {p.title}
+                </h3>
+                <p class="mt-2 eyebrow">{p.sub}</p>
+                <p class={`mt-4 text-[var(--ink-soft)] ${p.featured ? "text-base max-w-md" : "text-sm"}`}>
+                  {p.desc}
+                </p>
+
+                <div class="mt-6 flex items-center justify-between gap-4 pt-4 border-t border-[var(--rule)]">
+                  <span class="font-mono text-xs text-[var(--ink-soft)] truncate">{p.domain}</span>
+                  <span class="inline-flex items-center gap-2 font-mono text-xs text-[var(--ink)] group-hover:text-[var(--ember)] transition-colors">
+                    {p.cta} <span class="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </div>
+              </div>
+
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute -bottom-10 -right-10 text-[180px] md:text-[260px] font-display leading-none text-[var(--ink)] opacity-[0.04] group-hover:opacity-[0.08] transition-opacity"
+              >
+                {String(idx + 1).padStart(2, "0")}
+              </span>
+            </article>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  {/* Stats Section */}
+  <section class="rule-top border-b border-[var(--rule)] bg-[var(--paper-deep)] mt-10">
+    <div class="container-edit py-12 grid grid-cols-2 md:grid-cols-4 gap-y-8">
+      {STATS.map((s) => (
+        <div class="text-center md:text-left md:border-l md:first:border-l-0 md:border-[var(--rule)] md:pl-6">
+          <div class="font-display text-5xl md:text-6xl text-[var(--ink)]">{s.k}</div>
+          <div class="eyebrow mt-2">{s.v}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* Build in Public Section */}
+  <section class="container-edit pt-24 pb-12">
+    <header class="flex flex-wrap items-end justify-between gap-6 mb-10">
+      <div>
+        <p class="eyebrow">BUILD IN PUBLIC · 最近在做什么</p>
+        <h2 class="mt-3 font-display text-5xl md:text-6xl text-[var(--ink)]">
+          公开构建是<br />我的<span class="italic text-[var(--ember)]">创作逻辑</span>。
+        </h2>
+      </div>
+      <a href="/now/" class="font-mono text-sm text-[var(--ink)] hover:text-[var(--ember)] inline-flex items-center gap-2 no-underline">
+        查看完整行动日志 →
+      </a>
+    </header>
+
+    <ol class="relative border-l border-[var(--rule)] pl-8 space-y-10 list-none">
+      {LOG.map((e) => (
+        <li class="relative">
+          <span class="absolute -left-[37px] top-1 grid place-items-center h-4 w-4 rounded-full bg-[var(--paper)] border-2 border-[var(--ember)]">
+            <span class="h-1.5 w-1.5 rounded-full bg-[var(--ember)]"></span>
+          </span>
+          <div class="grid md:grid-cols-[160px_auto_1fr] gap-4 md:gap-8 items-baseline">
+            <time class="font-mono text-xs text-[var(--ink-soft)]">{e.date}</time>
+            <span class="chip self-start">{e.tag}</span>
+            <div>
+              <h3 class="font-display text-2xl md:text-3xl text-[var(--ink)]">{e.title}</h3>
+              <p class="mt-2 text-[var(--ink-soft)] max-w-2xl">{e.body}</p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  {/* Blog Teaser Section */}
+  <section class="container-edit pt-24">
+    <div class="grid md:grid-cols-12 gap-10 items-end rule-top pt-12">
+      <div class="md:col-span-7">
+        <p class="eyebrow">FROM THE BLOG · 博客近作</p>
+        <h2 class="mt-3 font-display text-5xl md:text-6xl text-[var(--ink)] leading-tight">
+          把每一次思考<br />都<span class="italic text-[var(--ember)]">沉淀</span>下来。
+        </h2>
+        <p class="mt-6 text-[var(--ink-soft)] max-w-lg">
+          产品思考、独立开发实战、影视文化随笔。写作是我对外公开的最稳定杠杆。
+        </p>
+        <a
+          href="/blog/"
+          class="mt-8 inline-flex items-center gap-3 px-6 py-3.5 bg-[var(--ink)] text-[var(--paper)] text-sm tracking-wider uppercase font-mono hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[4px_4px_0_0_var(--ember)] transition-all no-underline"
+        >
+          进入博客 →
+        </a>
+      </div>
+      <ul class="md:col-span-5 space-y-5 list-none pl-0">
+        {blogTeasers.map((b) => (
+          <li class="group rule-top pt-5 first:border-0 first:pt-0">
+            <a href={`/blog/${b.slug}/`} class="flex items-baseline justify-between gap-6 no-underline">
+              <div>
+                <p class="eyebrow">
+                  {b.data.tags && b.data.tags[0] ? `${b.data.tags[0]} · ` : ''}
+                  {b.data.pubDatetime.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')}
+                </p>
+                <h3 class="mt-2 font-display text-2xl text-[var(--ink)] group-hover:text-[var(--ember)] transition-colors">
+                  {b.data.title}
+                </h3>
+              </div>
+              <span class="font-mono text-[var(--ink-soft)] group-hover:text-[var(--ember)] group-hover:translate-x-1 inline-block transition-transform">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
 </BaseLayout>
 
-<script>
-  // Scroll reveal for sections below the hero
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    (el as HTMLElement).style.transitionDelay = `${i * 0.08}s`;
-    observer.observe(el);
-  });
-</script>
+<style>
+  @keyframes marquee {
+    from { transform: translateX(0) }
+    to { transform: translateX(-33.333%) }
+  }
+  .animate-\[marquee_38s_linear_infinite\] {
+    animation: marquee 38s linear infinite;
+  }
+</style>

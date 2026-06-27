@@ -28,6 +28,11 @@ const fullTitle = title.includes('Sanage') ? title : `${title} | Sanage`;
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
+    <!-- Google Fonts for Paper & Ink Design System -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+
     <MetaTags title={fullTitle} description={description} keywords={keywords} />
     <OpenGraph title={fullTitle} description={description} image={ogImage} type={ogType} />
     <TwitterCard title={fullTitle} description={description} image={ogImage} />
@@ -50,7 +55,7 @@ const fullTitle = title.includes('Sanage') ? title : `${title} | Sanage`;
       };
     </script>
   </head>
-  <body class="bg-gray-50 text-gray-900 antialiased pt-14 pb-16 md:pb-0">
+  <body class="antialiased">
     <Navigation />
     <main>
       <slot />

@@ -3,146 +3,98 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const title = '作品集 · 互动人格测试与 AI 执行效率工具矩阵 | Sanage';
-const description = 'Sanage 旗下互动作品与子站全览。包括：Quiz 测评室（谍战人格测试、武林外传匹配）、CalmFlow 桌面 AI 任务拆解系统与 Bu 占卜室（周易与多元占卜平台）。我们坚持把有意思的认知问题，做成能玩、好用且精美的数字产品。';
+const description = 'Sanage 旗下互动作品与子站全览。包括：Quiz 测评室（谍战人格测试、武林外传匹配）、CalmFlow 桌面 AI 任务拆解系统与 Bu 占卜室（周易与多元占卜平台）。';
+
 const works = await getCollection('works');
 
-// 所有在线的排前面
+// Sort works based on specific business weights
+const order = ['lab', 'calmflow', 'quiz', 'bu'];
 const sortedWorks = [...works].sort((a, b) => {
-  if (a.data.status === 'online' && b.data.status !== 'online') return -1;
-  if (a.data.status !== 'online' && b.data.status === 'online') return 1;
-  return 0;
+  return order.indexOf(a.data.slug) - order.indexOf(b.data.slug);
 });
 
-const themeAccent: Record<string, { icon: string; bg: string; ring: string }> = {
-  amber:  { icon: '🕵️', bg: '#fdf7ee', ring: '#f0d9b5' },
-  indigo: { icon: '🧠', bg: '#f0f0ff', ring: '#c7c7f0' },
-  orange: { icon: '🔥', bg: '#fff4ee', ring: '#ffd0b5' },
-  emerald:{ icon: '✨', bg: '#effdf4', ring: '#a7f3c5' },
-  rose:   { icon: '💡', bg: '#fff0f3', ring: '#ffc5d0' },
-};
+// Format to match the design system list specifications
+const items = sortedWorks.map((w, idx) => {
+  let role = 'Web · 数字化产品';
+  let year = '2025 –';
+  if (w.data.slug === 'lab') {
+    role = 'AI 阵地 · 咨询展示';
+    year = '2026';
+  } else if (w.data.slug === 'calmflow') {
+    role = '桌面端 · 心流工具';
+    year = '2026';
+  } else if (w.data.slug === 'quiz') {
+    role = 'Web · 人格测评';
+    year = '2024 –';
+  } else if (w.data.slug === 'bu') {
+    role = 'Web · 数字化占卜';
+    year = '2025 –';
+  }
+
+  return {
+    n: String(idx + 1).padStart(2, '0'),
+    title: w.data.title,
+    year,
+    role,
+    href: w.data.links[0]?.url || '#',
+    desc: w.data.description,
+  };
+}).concat([
+  {
+    n: String(works.length + 1).padStart(2, '0'),
+    title: 'Sanage Blog',
+    year: '2023 –',
+    role: '写作 · 长期杠杆',
+    href: '/blog/',
+    desc: '记录产品思考、独立开发与影视文化随笔，时常更新。'
+  }
+]);
 ---
 
 <BaseLayout title={title} description={description} ogImage="/images/og/works.png" schemaType="website">
 
-  <section class="max-w-3xl mx-auto px-6 py-14 md:py-20">
-
-    {/* 页头 */}
-    <div class="mb-12">
-      <p class="text-[11px] tracking-[0.2em] text-[#b87333] uppercase mb-3 font-medium animate-fade-in-up">
-        作品
-      </p>
-      <h1 class="text-[32px] md:text-[40px] font-bold text-[#1a1a18] leading-tight animate-fade-in-up delay-100">
-        在做的东西
-      </h1>
-      <p class="text-[14px] text-[#9a9a94] mt-2 animate-fade-in-up delay-200">
-        把有意思的问题做成能玩的产品
-      </p>
-    </div>
-
-    {/* 作品列表 */}
-    <div class="flex flex-col gap-4">
-      {sortedWorks.map((work, i) => {
-        const accent = themeAccent[work.data.theme] ?? themeAccent.amber;
-        const isOnline = work.data.status === 'online';
-        return (
-          <div
-            class="reveal group bg-white border border-[#ebe8e4] rounded-2xl overflow-hidden"
-            style={`transition-delay: ${i * 0.1}s`}
-          >
-            <div class="flex flex-col sm:flex-row sm:items-stretch">
-
-              {/* 左侧图标区 */}
-              <div
-                class="sm:w-[88px] sm:flex-shrink-0 flex items-center justify-center p-5 sm:p-0"
-                style={`background-color: ${accent.bg};`}
-              >
-                <div
-                  class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl border"
-                  style={`background: white; border-color: ${accent.ring};`}
-                >
-                  {work.data.emoji}
-                </div>
-              </div>
-
-              {/* 右侧内容区 */}
-              <div class="flex-1 min-w-0 p-5 sm:p-6 border-t sm:border-t-0 sm:border-l border-[#ebe8e4]">
-
-                {/* 顶部：标题 + 状态 */}
-                <div class="flex items-center gap-2.5 mb-2">
-                  <h2 class="text-[17px] font-semibold text-[#1a1a18]">{work.data.title}</h2>
-                  <span class={`text-[10px] font-medium px-2 py-[2px] rounded-full ${
-                    work.data.statusLabel === '开源'
-                      ? 'bg-violet-50 text-violet-700'
-                      : isOnline
-                        ? 'bg-emerald-50 text-emerald-700'
-                        : 'bg-gray-100 text-gray-500'
-                  }`}>
-                    {work.data.statusLabel === '开源' ? '开源自部署' : work.data.statusLabel}
-                  </span>
-                </div>
-
-                {/* 标签 */}
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                  {work.data.tags.map((tag: string) => (
-                    <span class="text-[11px] px-2 py-[2px] rounded-md bg-[#f5f3f0] text-[#8a8a84]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* 描述 */}
-                <p class="text-[13px] text-[#6b6b65] leading-[1.75] mb-4">
-                  {work.data.description}
-                </p>
-
-                {/* 链接 */}
-                <div class="flex items-center gap-4">
-                  {work.data.links.map((link: { label: string; url: string }) => (
-                    isOnline ? (
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#b87333] hover:text-[#9a5e22] transition-colors"
-                        onclick={`trackEvent('click_work', {work_name: '${work.data.slug}'})`}
-                      >
-                        {link.label} <span class="text-[11px]">↗</span>
-                      </a>
-                    ) : (
-                      <span class="text-[13px] text-[#c5c5be] cursor-not-allowed">
-                        {link.label}（即将上线）
-                      </span>
-                    )
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-
-    {/* 底部提示 */}
-    <div class="mt-10 reveal">
-      <p class="text-[13px] text-[#b5b5ae]">
-        更多作品正在筹备中，不一定是测评，但一定好玩。
-      </p>
-    </div>
-
+  {/* Page Header */}
+  <section class="container-edit pt-16 md:pt-24 pb-12 border-b border-[var(--rule)]">
+    <p class="eyebrow">WORKS · 作品集</p>
+    <h1 class="mt-4 font-display text-6xl md:text-8xl leading-[0.95] text-[var(--ink)] max-w-4xl">
+      所有作品都是 <span class="italic text-[var(--ember)]">未完成</span>
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg text-[var(--ink-soft)] leading-relaxed">
+      一份持续生长的清单。每一个产品都是一次自我实验，不为完美而存在，为生长而存在。
+    </p>
   </section>
-</BaseLayout>
 
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.08 }
-  );
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-</script>
+  {/* Works List */}
+  <section class="container-edit py-4">
+    <ul class="list-none pl-0">
+      {items.map((w) => (
+        <li class="group rule-top">
+          <a
+            href={w.href}
+            target={w.href.startsWith("http") ? "_blank" : undefined}
+            rel={w.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            class="grid grid-cols-12 gap-4 py-8 md:py-10 items-baseline hover:bg-[var(--paper-deep)] transition-colors px-2 -mx-2 no-underline"
+          >
+            <span class="col-span-2 md:col-span-1 font-mono text-sm text-[var(--ink-soft)]">{w.n}</span>
+            <div class="col-span-10 md:col-span-5">
+              <h2 class="font-display text-4xl md:text-6xl text-[var(--ink)] group-hover:text-[var(--ember)] transition-colors m-0">
+                {w.title}
+              </h2>
+            </div>
+            <div class="col-span-6 md:col-span-3">
+              <p class="eyebrow m-0">{w.role}</p>
+              <p class="mt-2 text-sm text-[var(--ink-soft)] m-0">{w.desc}</p>
+            </div>
+            <div class="col-span-6 md:col-span-3 md:text-right">
+              <p class="font-mono text-sm text-[var(--ink-soft)] m-0">{w.year}</p>
+              <p class="mt-2 font-mono text-xs text-[var(--ink)] group-hover:text-[var(--ember)] inline-flex items-center gap-2 m-0">
+                访问 <span class="transition-transform group-hover:translate-x-1">→</span>
+              </p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+</BaseLayout>
